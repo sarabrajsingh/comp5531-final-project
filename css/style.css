@@ -1,3 +1,8 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
 .panel-login {
     padding-top: 180px;
 	border-color: #ccc;
