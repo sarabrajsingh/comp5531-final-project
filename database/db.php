@@ -1,5 +1,4 @@
 <?php
-session_start();
 $DATABASE_HOST = '127.0.0.1';
 $DATABASE_USER = 'cjc55311';
 $DATABASE_PASS = 'suprem3';
