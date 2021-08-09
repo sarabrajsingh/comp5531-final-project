@@ -40,16 +40,18 @@ Employer side dashboard:
 
 •	Employer dashboard should have a contact us section to help user with contact information/helpline.
 
- 
-User side dashboard:
+ User side dashboard:
 
 •	Should be able to sign up as a user.
 
 •	Three user categories should be provided:
 
+
   o	Basic: Employee can only view jobs but cannot apply. No charge
   
+  
   o	Prime: Employee can view jobs as well as apply for up to five jobs. A monthly charge of $10 will be applied.
+  
   
   o	Gold: Employee can view and apply to as many jobs as he/she wants. A monthly charge of $20 will be applied.
   
