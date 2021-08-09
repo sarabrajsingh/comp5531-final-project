@@ -2,6 +2,6 @@
 session_start();
 session_destroy();
 // Redirect to the login page:
-//header('Location: index.html');
-echo 'logged out';
+header('Location: index.html');
+// echo 'logged out';
 ?>
