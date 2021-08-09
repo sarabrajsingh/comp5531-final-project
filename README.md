@@ -15,40 +15,72 @@ Your client is a service provider company, they would like you and your team to 
 The requirements data to be modeled are as follows:
 
 Employer side dashboard:
+
 •	Should have an admin login and a mechanism to verify credentials or forgot password.
+
 •	Should be able to maintain new users and update the user table.
+
 •	Should be able to post jobs.
+
 •	Should be able to maintain current jobs and categories.
+
 •	Should be able to maintain status of applied jobs.
+
 •	Should be able to see a summary of current application at a glance.
-•	Two user categories should be provided: 
-o	Prime: Employer can post up to five jobs. A monthly charge of $50 will be applied.
-o	Gold: Employer can post as many jobs as he/she wants. A monthly charge of $100 will be applied.
+
+•	Two user categories should be provided:
+
+  o	Prime: Employer can post up to five jobs. A monthly charge of $50 will be applied.
+  
+  o	Gold: Employer can post as many jobs as he/she wants. A monthly charge of $100 will be applied.
+  
 •	Users have the ability to upgrade or downgrade their category. Charges should be updated based on the new category.
+
 •	When users upgrade their category, it should update the user category status.
+
 •	Employer dashboard should have a contact us section to help user with contact information/helpline.
 
  
 User side dashboard:
+
 •	Should be able to sign up as a user.
-•	Three user categories should be provided: 
+
+•	Three user categories should be provided:
+
   o	Basic: Employee can only view jobs but cannot apply. No charge
+  
   o	Prime: Employee can view jobs as well as apply for up to five jobs. A monthly charge of $10 will be applied.
+  
   o	Gold: Employee can view and apply to as many jobs as he/she wants. A monthly charge of $20 will be applied.
+  
 •	Should be able to choose categories.
+
 •	Users have the ability to upgrade or downgrade their category. Charges should be updated based on the new category.
+
 •	When users upgrade their category, it should update the user category status.
+
 •	Should have a user login and a mechanism to verify credentials or forgot password.
+
 •	Should be able to search for jobs.
+
 •	Should be able to search by job category.
+
 •	Should be able to apply for jobs.
+
 •	Should be able to maintain status of applied jobs.
+
 •	Should be able to delete user profile.
+
 •	Should be able to update user profile details.
+
 •	Should be able to withdraw from an applied job. 
+
 Administration side dashboard:
+
 •	Should have an admin login and a mechanism to verify credentials or forgot password.
+
 •	Should be able to activate or deactivate a user.
+
 •	Should be able to see all activities in the system.
 
 All Users must have the ability to provide a method of payment to their account and provide the needed information to be charged. Method of payments could be either credit card charge or authorization from an existing checking account. In each case the proper information for withdrawal must be supplied by the user. The user have the option to choose between an automatic withdrawal or manual withdrawal.  An automatic withdrawal is done automatically by the system at the beginning of each month by applying a charge to the user from a preselected method of payment. Users can have many methods of payments associated with their accounts and should be able to add/remove or edit their methods of payments. An account that is negative will be frozen until it is settled, and a payment is made.  The user of a frozen account will be able to login to the system but will not be able to access the services provided by the dashboard until the user account is settled. When a charge is applied to an account, an automatic email is sent to the user informing of the charge and account status. A suffering account will receive a warning message once a week until the account is settled or deactivated. A suffering account for a year will be deactivated automatically by the system.  
