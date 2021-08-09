@@ -32,9 +32,9 @@ o	Gold: Employer can post as many jobs as he/she wants. A monthly charge of $100
 User side dashboard:
 •	Should be able to sign up as a user.
 •	Three user categories should be provided: 
-o	Basic: Employee can only view jobs but cannot apply. No charge
-o	Prime: Employee can view jobs as well as apply for up to five jobs. A monthly charge of $10 will be applied.
-o	Gold: Employee can view and apply to as many jobs as he/she wants. A monthly charge of $20 will be applied.
+  o	Basic: Employee can only view jobs but cannot apply. No charge
+  o	Prime: Employee can view jobs as well as apply for up to five jobs. A monthly charge of $10 will be applied.
+  o	Gold: Employee can view and apply to as many jobs as he/she wants. A monthly charge of $20 will be applied.
 •	Should be able to choose categories.
 •	Users have the ability to upgrade or downgrade their category. Charges should be updated based on the new category.
 •	When users upgrade their category, it should update the user category status.
@@ -66,20 +66,37 @@ These are the minimum requirements for your application. More details could be a
 Formulate and evaluate the following SQL queries against an instance of your database in which every relation is populated with 'sufficient'" representative tuples.
 
 i.	Create/Delete/Edit/Display an Employer.
-ii.	Create/Delete/Edit/Display a category by an Employer. 
+
+ii.	Create/Delete/Edit/Display a category by an Employer.
+
 iii.	Post a new job by an employer.
+
 iv.	Provide a job offer for an employee by an employer.
+
 v.	Report of a posted job by an employer (Job title and description, date posted, list of employees applied to the job and status of each application).
+
 vi.	Report of posted jobs by an employer during a specific period of time (Job title, date posted, short description of the job up to 50 characters, number of needed employees to the post, number of applied jobs to the post, number of accepted offers).
+
 vii.	Create/Delete/Edit/Display an Employee.
+
 viii.	Search for a job by an employee.
+
 ix.	Apply for a job by an employee.
+
 x.	Accept/Deny a job offer by an employee.
+
 xi.	Withdraw from an applied job by an employee.
+
 xii.	Delete a profile by an employee.
+
 xiii.	Report of applied jobs by an employee during a specific period of time (Job title, date applied, short description of the job up to 50 characters, status of the application).
+
 xiv.	Add/Delete/Edit a method of payment by a user.
+
 xv.	Add/Delete/Edit an automatic payment by a user.
+
 xvi.	Make a manual payment by a user.
+
 xvii.	Report of all users by the administrator for employers or employees (Name, email, category, status, balance.
+
 xviii.	Report of all outstanding balance accounts (User name, email, balance, since when the account is suffering).
