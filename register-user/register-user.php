@@ -32,7 +32,7 @@
             password, 
             employerStatus,
             paymentInfos) VALUES (?, ?, ?, ?, ?)');
-        $stmt->bind_param("ssssss", 
+        $stmt->bind_param("sssss", 
             $_POST["CompanyName"],
             $_POST["register-email"],
             $hashedPassword,
@@ -58,7 +58,7 @@
             dob,
             userStatus,
             PaymentInfos) VALUES (?, ?, ?, ?, ?, ?, ?)');
-        $stmt->bind_param("ssssss", 
+        $stmt->bind_param("sssssss", 
             $_POST["firstName"],
             $_POST["lastName"],
             $_POST["register-email"],
