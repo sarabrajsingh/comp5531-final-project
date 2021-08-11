@@ -1,4 +1,5 @@
 $(function () {
+
     $('#login-form-link').click(function (e) {
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);
@@ -74,5 +75,21 @@ $(function () {
                 $("#register-form").submit();
             }
         });
+    });
+    /* ---------------------- INDEX REGISTER FORM */
+    $('.form-user').show();
+    $('.form-company').hide();
+    $('#status').change(function () {
+        var selected = $('#status option:selected').text();
+        console.log("selected: "+selected);
+        if($('#status option:selected').text() == "Job-seeker"){
+            $('.form-company').hide();
+            $('.form-group').show();
+            $('.form-user').show();
+        }else if($('#status option:selected').text() == "Company"){
+            $('.form-user').hide();
+            $('.form-group').show();
+            $('.form-company').show();
+        }
     });
 });

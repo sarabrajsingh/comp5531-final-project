@@ -140,3 +140,16 @@ body.loggedin {
 	padding: 5px;
 	margin: 0 0 10px 0;
 }
+
+.form-user, form-company, form-group{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.paymentInfos {
+	margin-top: 20px;
+}
+.expiracyBox{
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
