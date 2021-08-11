@@ -1,77 +1,73 @@
 <?php
     require '../database/db.php';
 
-    // $_POST['firstName'] = 'sarabraj';
-    // $_POST['lastName'] = 'singh';
-    // $_POST['password'] = 'admin';
-    // $_POST['email'] = 'singh.sarabraj@gmail.com';
-    // $role = "employer";
-    // $category = "prime";
-
     if(!isset($_POST['firstName'], $_POST['lastName'], $_POST["register-password"], $_POST['register-email'])) {
         exit('problem parsing form');
     }
 
-    /*
-        Array
-        ( 
-            [firstName] => TestUserFirstName 
-            [lastName] => TestUserLastName 
-            [dateOfBirth] => 1980-07-22 
-            [CompanyName] => testCard 
-            [register-email] => testuser@gmail.com 
-            [register-password] => testtesttest 
-            [confirm-password] => testtesttest 
-            [cardnumber] => 1111-2222-3333-4444 
-            [expyear] => 01/21 
-            [cvv] => 352
-            [subscription] => Basic
-        ) 
-    */
+    //print_r($_POST);
+    print_r($_POST);
 
     $hashedPassword = password_hash($_POST["register-password"], PASSWORD_DEFAULT);
     $role = 'user';
     $category = 'basic';
     $status = $_POST["status"];
 
+    $payment = $_POST["cardname"]."|".$_POST["cardnumber"]."|".$_POST["expyear"]."|".$_POST["cvv"];
+     
+    /* ---------------------------- */
 
-    print_r($_POST);
+    if($status == "Employer")
+    {
+        /* check values */
+        print("companyName: ".$_POST["CompanyName"]);
+        print("email: ".$_POST["register-email"]);
+        print("password: ".$hashedPassword);
+        print("subscription: ".$_POST["subscription"]);
+        print("payment: ".$payment);
+        /* send values */
+        $stmt = $con->prepare('INSERT INTO companies (
+            companyName, 
+            email, 
+            password, 
+            employerStatus,
+            paymentInfos) VALUES (?, ?, ?, ?, ?)');
+        $stmt->bind_param("ssssss", 
+            $_POST["CompanyName"],
+            $_POST["register-email"],
+            $hashedPassword,
+            $_POST["subscription"],
+            $payment,
+        );
+    }else{
+        /* check values */
+        print("first name: ".$_POST["firstName"]);
+        print("last name: ".$_POST["lastName"]);
+        print("email: ".$_POST["register-email"]);
+        print("password: ".$hashedPassword);
+        print("date of birth: ".$_POST["dateOfBirth"]);
+        print("subscription: ".$_POST["subscription"]);
+        print("payment: ".$payment);
+        /* send values */
 
-/*
-    $dateOfBirth = $_POST["dateOfBirth"];
-    print("Date of birth: ".$dateOfBirth);
-    $cardName = $_POST["cname"];
-    print("cname: ".$cname);
-    $cardNumber = $_POST["cardnumber"]; 
-    print("cardNumber: ".$cardNumber);
-    $cardExpiracy = $_POST["expyear"];
-    print("cardExpiracy: ".$cardExpiracy);
-    $cvv = $_POST["cvv"];
-    print("CVV: ".$cvv);
-*/
- //   $payment = $cardName."|".$cardNumber."|".$cardExpiracy."|".$cvv;
-
-    print("Payment: "+$payment);
-    print("Status: "+$status); 
-
-$stmt = $con->prepare('INSERT INTO users (
-    firstName, 
-    lastName, 
-    email, 
-    password, 
-    dob,
-    userStatus,
-    PaymentInfos) VALUES (?, ?, ?, ?, ?, ?, ?)');
-    print("\nTEST2\n");
-$stmt->bind_param("sssssss", 
-    $_POST["firstName"],
-    $_POST["lastName"],
-    $_POST["register-email"],
-    $hashedPassword,
-    $_POST["dateOfBirth"],
-    $_POST["subscription"],
-    $_POST["dateOfBirth"],
-);
+        $stmt = $con->prepare('INSERT INTO users (
+            firstName, 
+            lastName, 
+            email, 
+            password, 
+            dob,
+            userStatus,
+            PaymentInfos) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->bind_param("ssssss", 
+            $_POST["firstName"],
+            $_POST["lastName"],
+            $_POST["register-email"],
+            $hashedPassword,
+            $_POST["dateOfBirth"],
+            $_POST["subscription"],
+            $payment,
+        );
+    }
 
 $stmt->execute();
     if($stmt->affected_rows === 0) {

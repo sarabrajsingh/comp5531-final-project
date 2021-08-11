@@ -18,11 +18,11 @@ CREATE TABLE IF NOT EXISTS `users` (
  	`password` varchar(255) NOT NULL,
 	`dob` DATE NOT NULL,
  	`userStatus` varchar(255),
- 	`PaymentInfos` varchar(255) NOT NULL,
+ 	`paymentInfos` varchar(255) NOT NULL,
  PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
---	paymentStatus: Prime: 50$/month or Gold: 100$/month
--- PaymentInfos: // 
+--	userStatus: Prime: 50$/month or Gold: 100$/month
+-- PaymentInfos: USERNAME | CARDNUMBER | MM/YY | CVV 
 
 CREATE TABLE IF NOT EXISTS `companies` (
 	`companyId` int(1) NOT NULL AUTO_INCREMENT,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
 	`paymentInfos` varchar(255) NOT NULL,
     PRIMARY KEY (`companyId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
--- paymentStatus: Prime: 50$/month or Gold: 100$/month
+-- employerStatus: Prime: 50$/month or Gold: 100$/month
 
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES (1, 'test', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'test@test.com');
