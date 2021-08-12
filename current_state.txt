@@ -1,0 +1,9 @@
+Register:
+ - company:
+ -  user:
+
+Log in:
+ - company:
+ - user:            
+ - admin:           can connect
+
