@@ -4,8 +4,8 @@
 	I use ob_start() instead of session_start() because:
 	because https://stackoverflow.com/questions/19229055/how-to-solve-session-regenerate-id-cannot-regenerate-session-id-headers-al
 */
-//ob_start();
-session_start();
+ob_start();
+//session_start();
 
 require '../database/db.php';
 
@@ -19,6 +19,8 @@ $data = [];
 if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 	// Could not get the data that should have been sent.
 	exit('Please fill both the username and password fields!');
+}else{
+	print("email: ".$_POST['login-email']." ____ password: ".$_POST['login-password']);
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.

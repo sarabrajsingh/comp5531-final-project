@@ -57,8 +57,8 @@
         );
         $stmt->execute();
         print_r($stmt);
-    }
-    if ($status == "Job-Seeker") {
+    } else {
+    //if ($status == "Job-Seeker") {
         // print_r($_POST);
         /* check values */
         // print("first name: ".$_POST["firstName"]);
