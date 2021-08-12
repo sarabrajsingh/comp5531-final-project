@@ -32,7 +32,7 @@ $stmt->close();
 	</head>
 
 	<body class="loggedin">
-		<nav class="navtop">x
+		<nav class="navtop">
 			<div>
 				<h1>Website Title</h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>

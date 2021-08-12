@@ -26,3 +26,15 @@ email:
 password:
 test
 
+Job-seeker:
+
+email:
+new.user@gmail.com
+
+password:
+test
+
+---------------------------------
+
+
+

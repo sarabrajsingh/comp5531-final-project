@@ -1,10 +1,11 @@
 <?php
-session_start();
+//session_start(); // Will cause problem when trying to connect using admin
 /*
 	I use ob_start() instead of session_start() because:
 	because https://stackoverflow.com/questions/19229055/how-to-solve-session-regenerate-id-cannot-regenerate-session-id-headers-al
 */
-ob_start();
+//ob_start();
+session_start();
 
 require '../database/db.php';
 
@@ -73,7 +74,7 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userSta
 								$_SESSION['name'] = $companyName;
 								$_SESSION['userStatus'] = $userStatus;
 								header('Location: ../homepages/employer-home.php');
-								}
+							}
 					}
 			else {
 				// Incorrect password
