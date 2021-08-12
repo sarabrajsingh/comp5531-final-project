@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 */
-
 CREATE TABLE IF NOT EXISTS `users` (
 	`userId` int NOT NULL AUTO_INCREMENT,
  	`firstName` varchar(255) NOT NULL,
@@ -24,6 +23,14 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 --	userStatus: Prime: 50$/month or Gold: 100$/month
 -- PaymentInfos: USERNAME | CARDNUMBER | MM/YY | CVV 
+
+/*
+	companyName: SoftwareCompany 
+	email: software.company@gmail.com 
+	password: $2y$10$64z7N.UHV7965v15NQPFWOWJd/bISjERVxPVSDABPlZLqYKdGg1Hy 
+	subscription: Gold 
+	payment: SoftwareCompany|1111-2222-3333-4444|01/22|353
+*/
 
 CREATE TABLE IF NOT EXISTS `companies` (
 	`companyId` int(1) NOT NULL AUTO_INCREMENT,

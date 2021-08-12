@@ -1,0 +1,15 @@
+Job-seeker:
+
+email:
+marcus.donut@outlook.com
+
+password:
+testtesttest
+
+Company:
+
+email:
+company1234@icloud.com
+
+password:
+test4567

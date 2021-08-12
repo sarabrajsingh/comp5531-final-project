@@ -1,16 +1,6 @@
 <?php
     require '../database/db.php';
-/*
-    $_POST["status"] = "Employer";
-    $_POST["CompanyName"] = "Raj's Dig Bick Company";
-    $_POST["register-email"] = "dig@bick.com";
-    $_POST["register-password"] = "wagwanG";
-    $_POST["subscription"] = "Prime";
-    $_POST["cardname"] = "Sarabraj Singh";
-    $_POST["cardnumber"] = "1111-2222-3333-4444";
-    $_POST["expyear"] = "69/69";
-    $_POST["cvv"] = "666";
-*/
+
     if(isset($_POST['status'])){
         $allGood = true;
         if($_POST['status'] == "Employer"){
@@ -44,7 +34,7 @@
 
     if($status == "Employer")
     {
-        print_r($_POST);
+        //print_r($_POST);
         /* check values */
         // print("companyName: ".$_POST["CompanyName"]);
         // print("email: ".$_POST["register-email"]);
@@ -67,7 +57,7 @@
         );
     }
     if ($status == "Job-Seeker") {
-        print_r($_POST);
+        // print_r($_POST);
         /* check values */
         // print("first name: ".$_POST["firstName"]);
         // print("last name: ".$_POST["lastName"]);
@@ -104,5 +94,6 @@
     } else {
         // header('Location: success.html'); 
         echo 'Success';
+        //header('Location: index.html');
     }
 ?>
