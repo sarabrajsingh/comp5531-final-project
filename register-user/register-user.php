@@ -55,6 +55,8 @@
             $_POST["subscription"],
             $paymentInfo,
         );
+        $stmt->execute();
+        print_r($stmt);
     }
     if ($status == "Job-Seeker") {
         // print_r($_POST);
@@ -88,12 +90,14 @@
         $stmt->execute();
         print_r($stmt);
     }
-
     if($stmt->errno != 0) {
         exit('error = ' . $stmt->error);
-    } else {
+    } 
+    /*
+    else {
         // header('Location: success.html'); 
         echo 'Success';
         //header('Location: index.html');
     }
+    */
 ?>

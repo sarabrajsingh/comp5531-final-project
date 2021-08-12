@@ -1,5 +1,11 @@
 <?php
 session_start();
+/*
+	I use ob_start() instead of session_start() because:
+	because https://stackoverflow.com/questions/19229055/how-to-solve-session-regenerate-id-cannot-regenerate-session-id-headers-al
+*/
+ob_start();
+
 require '../database/db.php';
 
 // $_POST['login-email'] = 'admin@admin.com';
@@ -17,7 +23,7 @@ if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userStatus FROM users WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-
+	print("test if job-seeker");
 	$stmt->bind_param('s', $_POST['login-email']);
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
@@ -48,7 +54,8 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userSta
 			}
 		}
 	} else {
-				if ($stmt = $con->prepare('SELECT companyName, email, Password, employerStatus FROM Employers WHERE email = ?')) {
+		print("test if Company");
+				if ($stmt = $con->prepare('SELECT companyName, email, Password, employerStatus FROM companies WHERE email = ?')) {
 
 						$stmt->bind_param('s', $_POST['login-email']);	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 						$stmt->execute();
