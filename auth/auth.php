@@ -15,7 +15,7 @@ if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, role FROM users WHERE email = ?')) {
+if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userStatus FROM users WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 
 	$stmt->bind_param('s', $_POST['login-email']);
@@ -24,7 +24,7 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, role FR
 	$stmt->store_result();
 
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($userId, $firstName, $lastName, $password, $role);
+		$stmt->bind_result($userId, $firstName, $lastName, $password, $userStatus);
 		$stmt->fetch();
 
 		// Account exists, now we verify the password.
@@ -36,12 +36,12 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, role FR
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['name'] = $firstName;
 			$_SESSION['id'] = $userId;
-			$_SESSION['role'] = $role;
+			$_SESSION['userStatus'] = $userStatus;
 			// $_SESSION['category'] = $category;
 			// echo 'Welcome ' . $_SESSION['name'] . '!';
-			if($_SESSION['role'] === 'employer'){
+			if($_SESSION['userStatus'] === 'employer'){
 				header('Location: ../homepages/employer-home.php');
-			} else if ($_SESSION['role'] === 'admin') {
+			} else if ($_SESSION['userStatus'] === 'admin') {
 				header('Location: ../homepages/admin-home.php');
 			} else {
 				header('Location: ../homepages/user-home.php');

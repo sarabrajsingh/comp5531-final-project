@@ -81,12 +81,12 @@ $(function () {
     $('.form-company').hide();
     $('#status').change(function () {
         var selected = $('#status option:selected').text();
-        console.log("selected: "+selected);
-        if($('#status option:selected').text() == "Job-seeker"){
+        console.log("selected: " + selected);
+        if ($('#status option:selected').text() == "Job-seeker") {
             $('.form-company').hide();
             $('.form-group').show();
             $('.form-user').show();
-        }else if($('#status option:selected').text() == "Company"){
+        } else if ($('#status option:selected').text() == "Company") {
             $('.form-user').hide();
             $('.form-group').show();
             $('.form-company').show();
