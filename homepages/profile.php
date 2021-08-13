@@ -63,8 +63,10 @@ $stmt->close();
 						<td>Password:</td>
 						<td><?=$password?></td>
 					</tr>
-					
 				</table>
+			</div>
+			<div>
+				<button>Edit</button>
 			</div>
 		</div>
 	</body>
