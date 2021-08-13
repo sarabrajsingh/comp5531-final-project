@@ -53,7 +53,7 @@ $stmt->close();
 					</tr>
 					<tr>
 						<td>Last Name:</td>
-						<td><?=lastName?></td>
+						<td><?=$lastName?></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
