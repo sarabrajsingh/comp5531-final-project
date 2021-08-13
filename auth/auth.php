@@ -46,10 +46,6 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userSta
 			$_SESSION['name'] = $firstName;
 			$_SESSION['id'] = $userId;
 			$_SESSION['userStatus'] = $userStatus;
-			// $_SESSION['category'] = $category;
-			// echo 'Welcome ' . $_SESSION['name'] . '!';
-			//if($_SESSION['role'] === 'employer'){
-			//	header('Location: ../homepages/employer-home.php');
 			if ($_SESSION['userStatus'] === 'admin') {
 				header('Location: ../homepages/admin-home.php');
 			} else {
