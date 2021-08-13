@@ -9,11 +9,17 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email FROM users WHERE userId = ?');
-// In this case we can use the account ID to get the account info.
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($password, $email);
+$stmt = '';
+if (isset($_SESSION['employerStatus'])){
+	$stmt = $con->prepare('SELECT password, email FROM companies WHERE companyId = ?');
+} else {
+	$stmt = $con->prepare('SELECT password, email, firstName, lastName FROM users WHERE userId = ?');
+	// In this case we can use the account ID to get the account info.
+	$stmt->bind_param('i', $_SESSION['id']);
+	$stmt->execute();
+	$stmt->bind_result($password, $email, $firstName, $lastName);
+}
+
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -42,20 +48,22 @@ $stmt->close();
 				<p>Your account details are below:</p>
 				<table>
 					<tr>
-						<td>Username:</td>
-						<td><?=$_SESSION['name']?></td>
+						<td>First Name:</td>
+						<td><?=$firstName?></td>
 					</tr>
 					<tr>
-						<?= var_dump($_SESSION); ?>
-</tr>
-					<tr>
-						<td>Password:</td>
-						<td><?=$password?></td>
+						<td>Last Name:</td>
+						<td><?=lastName?></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
 						<td><?=$email?></td>
 					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><?=$password?></td>
+					</tr>
+					
 				</table>
 			</div>
 		</div>
