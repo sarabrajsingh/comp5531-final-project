@@ -1,5 +1,5 @@
 <?php
-session_start();
+ob_start();
 // If the user is not logged in redirect to the login page...
 echo $_SESSION['loggedin'];
 if (!isset($_SESSION['loggedin'])) {
