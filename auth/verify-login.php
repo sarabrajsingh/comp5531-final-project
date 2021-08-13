@@ -16,7 +16,7 @@ if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 
-if ($$stmt = $con->prepare('SELECT password FROM users WHERE email = ? UNION SELECT password FROM companies WHERE email = ?;')) {
+if ($stmt = $con->prepare('SELECT password FROM users WHERE email = ? UNION SELECT password FROM companies WHERE email = ?;')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 
 	$stmt->bind_param('ss', $_POST['login-email'], $_POST['login-email']);
