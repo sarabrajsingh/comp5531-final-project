@@ -1,9 +1,5 @@
 <?php
-//session_start(); // Will cause problem when trying to connect using admin
-/*
-	I use ob_start() instead of session_start() because:
-	because https://stackoverflow.com/questions/19229055/how-to-solve-session-regenerate-id-cannot-regenerate-session-id-headers-al
-*/
+
 session_start();
 
 require '../database/db.php';

@@ -15,10 +15,10 @@ if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT password FROM users WHERE email = ?')) {
+if ($stmt = $con->prepare('SELECT ?, ? FROM users UNION SELECT ?, ? FROM companies')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 
-	$stmt->bind_param('s', $_POST['login-email']);
+	$stmt->bind_param('ssss', $_POST['login-email'], $_POST['login-password'], $_POST['login-email'], $_POST['login-password']);
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
