@@ -4,8 +4,7 @@
 	I use ob_start() instead of session_start() because:
 	because https://stackoverflow.com/questions/19229055/how-to-solve-session-regenerate-id-cannot-regenerate-session-id-headers-al
 */
-ob_start();
-//session_start();
+session_start();
 
 require '../database/db.php';
 
