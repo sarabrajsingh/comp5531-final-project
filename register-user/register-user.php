@@ -1,41 +1,105 @@
 <?php
     require '../database/db.php';
 
-    // $_POST['firstName'] = 'sarabraj';
-    // $_POST['lastName'] = 'singh';
-    // $_POST['password'] = 'admin';
-    // $_POST['email'] = 'singh.sarabraj@gmail.com';
-    // $role = "employer";
-    // $category = "prime";
-
-    if(!isset($_POST['firstName'], $_POST['lastName'], $_POST["register-password"], $_POST['register-email'])) {
-        exit('problem parsing form');
+    if(isset($_POST['status'])){
+        $allGood = true;
+        if($_POST['status'] == "Employer"){
+            if(!isset($_POST["CompanyName"]))
+                $allGood = false;
+        }
+        if($_POST['status'] == "Job-Seeker"){
+            if(!isset($_POST["firstName"], $_POST["lastName"]))
+                $allGood = false;
+        }
+        if(!isset(  $_POST["register-email"], 
+                    $_POST["register-password"], 
+                    $_POST["subscription"], 
+                    $_POST["cardname"], 
+                    $_POST["cardnumber"], 
+                    $_POST["expyear"], 
+                    $_POST["cvv"]))
+            $allGood = false;
     }
+    if(!$allGood)
+        exit("problem parsing incoming form");
 
     $hashedPassword = password_hash($_POST["register-password"], PASSWORD_DEFAULT);
     $role = 'user';
     $category = 'basic';
+    $status = $_POST["status"];
 
-    $stmt = $con->prepare('INSERT INTO users (
-        firstName, 
-        lastName, 
-        password, 
-        email, 
-        role, 
-        category) VALUES (?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param("ssssss", 
-        $_POST["firstName"],
-        $_POST["lastName"],
-        $hashedPassword,
-        $_POST["register-email"],
-        $role,
-        $category
-    );
-    $stmt->execute();
+    $paymentInfo = $_POST["cardname"]."|".$_POST["cardnumber"]."|".$_POST["expyear"]."|".$_POST["cvv"];
+     
+    /* ---------------------------- */
 
-    if($stmt->affected_rows === 0) {
-        exit('No rows updated');
+    if($status == "Employer")
+    {
+        //print_r($_POST);
+        /* check values */
+        // print("companyName: ".$_POST["CompanyName"]);
+        // print("email: ".$_POST["register-email"]);
+        // print("password: ".$hashedPassword);
+        // print("subscription: ".$_POST["subscription"]);
+        // print("payment: ".$paymentInfo);
+        /* send values */
+        $stmt = $con->prepare('INSERT INTO companies (
+            companyName, 
+            email, 
+            password, 
+            employerStatus,
+            paymentInfos) VALUES (?, ?, ?, ?, ?)');
+        $stmt->bind_param("sssss", 
+            $_POST["CompanyName"],
+            $_POST["register-email"],
+            $hashedPassword,
+            $_POST["subscription"],
+            $paymentInfo,
+        );
+        $stmt->execute();
+        print_r($stmt);
     } else {
-        header('Location: success.html'); 
+    //if ($status == "Job-Seeker") {
+        // print_r($_POST);
+        /* check values */
+        // print("first name: ".$_POST["firstName"]);
+        // print("last name: ".$_POST["lastName"]);
+        // print("email: ".$_POST["register-email"]);
+        // print("password: ".$hashedPassword);
+        // print("date of birth: ".$_POST["dateOfBirth"]);
+        // print("subscription: ".$_POST["subscription"]);
+        // print("payment: ".$payment);
+        /* send values */
+
+        $stmt = $con->prepare('INSERT INTO users (
+            firstName, 
+            lastName, 
+            email, 
+            password, 
+            dob,
+            userStatus,
+            PaymentInfos) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->bind_param("sssssss", 
+            $_POST["firstName"],
+            $_POST["lastName"],
+            $_POST["register-email"],
+            $hashedPassword,
+            $_POST["dateOfBirth"],
+            $_POST["subscription"],
+            $paymentInfo,
+        );
+        $stmt->execute();
     }
+    if($stmt->errno != 0) {
+        exit('error = ' . $stmt->error);
+    } 
+    else {
+        $protocol = '';
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+            $protocol = 'https';
+        } else {
+            $protocol = 'http';
+        }
+
+        header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/register-user/success.html");
+        }
 ?>

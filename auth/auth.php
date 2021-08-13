@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 require '../database/db.php';
 
 // $_POST['login-email'] = 'admin@admin.com';
@@ -12,12 +14,14 @@ $data = [];
 if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 	// Could not get the data that should have been sent.
 	exit('Please fill both the username and password fields!');
+}else{
+	print("email: ".$_POST['login-email']." ____ password: ".$_POST['login-password']);
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userStatus FROM users WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-
+	print("test if job-seeker");
 	$stmt->bind_param('s', $_POST['login-email']);
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
@@ -46,14 +50,35 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, userSta
 			} else {
 				header('Location: ../homepages/user-home.php');
 			}
-		} else {
-			// Incorrect password
-			$errors['password'] = 'Incorrect Password';
 		}
 	} else {
-		// Incorrect username
-		$errors['username'] = 'Incorrect Username';
+		print("test if Company");
+				if ($stmt = $con->prepare('SELECT companyName, email, Password, employerStatus FROM companies WHERE email = ?')) {
+
+						$stmt->bind_param('s', $_POST['login-email']);	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+						$stmt->execute();
+						$stmt->store_result();							// Store the result so we can check if the account exists in the database.
+
+						if ($stmt->num_rows > 0) {
+							$stmt->bind_result($companyName, $email, $password, $employerStatus);
+							$stmt->fetch();
+							// Account exists, now we verify the password.
+							if (password_verify($_POST['login-password'], $password)) {
+								// Verification success! User has logged-in!
+								session_regenerate_id(); // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
+
+								$_SESSION['loggedin'] = TRUE;
+								$_SESSION['name'] = $companyName;
+								$_SESSION['userStatus'] = $userStatus;
+								header('Location: ../homepages/employer-home.php');
+							}
+					}
+			else {
+				// Incorrect password
+				$errors['password'] = 'Incorrect Password';
+			}
+		}
+		$stmt->close();
 	}
-	$stmt->close();
 }
 ?>
