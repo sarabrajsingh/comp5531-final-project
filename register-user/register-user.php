@@ -88,16 +88,14 @@
             $paymentInfo,
         );
         $stmt->execute();
-        print_r($stmt);
+        // print_r($stmt);
     }
     if($stmt->errno != 0) {
         exit('error = ' . $stmt->error);
     } 
-    /*
     else {
-        // header('Location: success.html'); 
+        header('Location: success.html'); 
         echo 'Success';
-        //header('Location: index.html');
+        header('Location: index.html');
     }
-    */
 ?>
