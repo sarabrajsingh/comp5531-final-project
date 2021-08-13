@@ -1,5 +1,6 @@
 <?php
-ob_start();
+$content = ob_get_contents();
+echo $content;
 // If the user is not logged in redirect to the login page...
 echo $_SESSION['loggedin'];
 if (!isset($_SESSION['loggedin'])) {
