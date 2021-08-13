@@ -1,29 +1,5 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
 session_start();
-require '../database/db.php';
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: ../index.html');
-	exit;
-}
-
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = '';
-if (isset($_SESSION['employerStatus'])){
-	$stmt = $con->prepare('SELECT password, email FROM companies WHERE companyId = ?');
-} else {
-	$stmt = $con->prepare('SELECT password, email, firstName, lastName FROM users WHERE userId = ?');
-	// In this case we can use the account ID to get the account info.
-	$stmt->bind_param('i', $_SESSION['id']);
-	$stmt->execute();
-	$stmt->bind_result($password, $email, $firstName, $lastName);
-}
-
-$stmt->fetch();
-$stmt->close();
-?>
-
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +21,6 @@ $stmt->close();
 <div class="content">
 			<h2>Profile Page</h2>
 			<div>
-				<p>Your account details are below:</p>
 				<table>
 					<tr>
 						<td>First Name:</td>
