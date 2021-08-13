@@ -42,7 +42,6 @@ if (!isset($_SESSION['loggedin'])) {
 					<div class="content">
 						<h2>Home Page</h2>
 						<p>Welcome back, <?=$_SESSION['name']?>!</p>
-						<?php require 'header.php'; ?>
 					</div>
 		        </div>
 		    </div>
