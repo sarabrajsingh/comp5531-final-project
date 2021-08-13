@@ -88,7 +88,6 @@
             $paymentInfo,
         );
         $stmt->execute();
-        // print_r($stmt);
     }
     if($stmt->errno != 0) {
         exit('error = ' . $stmt->error);
@@ -102,6 +101,5 @@
         }
 
         header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/register-user/success.html");
-        // header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/index.html");
-    }
+        }
 ?>
