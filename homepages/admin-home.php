@@ -19,9 +19,9 @@ if (!isset($_SESSION['loggedin'])) {
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="loggedin">
-		<nav class="navtop">x
+		<nav class="navtop">
 			<div>
-				<h1>Website Title</h1>
+				<h1>Job Findr</h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['loggedin'])) {
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="textarea" class="col-12 col-form-label">Visual Editor</label> 
+                                <label for="textarea" class="col-12 col-form-label">Description</label> 
                                 <div class="col-12">
                                   <textarea id="textarea" name="textarea" cols="40" rows="5" class="form-control"></textarea>
                                 </div>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['loggedin'])) {
                                           <button name="submit" type="submit" class="btn btn-light">Add</button>
                                         </div>
                                         <div class="col-12">
-                                            <small>Seperate Tags with commas</small>
+                                            <small>Separate Tags with commas</small>
                                         </div>
                                       </div> 
                                     </form>
