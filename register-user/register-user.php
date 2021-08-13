@@ -94,8 +94,14 @@
         exit('error = ' . $stmt->error);
     } 
     else {
-        header('Location: success.html'); 
-        echo 'Success';
-        header('Location: index.html');
+        $protocol = '';
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+            $protocol = 'https';
+        } else {
+            $protocol = 'http';
+        }
+
+        header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/register-user.php/success.html");
+        header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/index.html");
     }
 ?>
