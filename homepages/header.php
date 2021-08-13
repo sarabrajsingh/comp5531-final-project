@@ -11,13 +11,11 @@ if (isset($_SESSION['employerStatus'])){
 <!DOCTYPE html>
 <html>
 
-	<nav class="navtop">
+	<nav class="d-inline-flex navtop">
 		<div>
-			<h1>
-                <a href=<?=$redirect_path?>>Job Findr</a>
-			    <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-			    <a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-            </h1>
+			<h1><a href=<?=$redirect_path?>>Job Findr</a> </h1>
+			<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
+			<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
 	</nav>
 </html>
