@@ -42,7 +42,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<div class="content">
 						<h2>Home Page</h2>
 						<p>Welcome back, <?=$_SESSION['name']?>!</p>
-						<p><?php var_dump($_SESSION); ?></p>
+						<?php require 'header.php'; ?>
 					</div>
 		        </div>
 		    </div>
