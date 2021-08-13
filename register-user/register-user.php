@@ -101,7 +101,7 @@
             $protocol = 'http';
         }
 
-        header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/register-user.php/success.html");
+        header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/register-user/success.html");
         // header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/index.html");
     }
 ?>
