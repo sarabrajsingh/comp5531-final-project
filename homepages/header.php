@@ -11,9 +11,9 @@ if (isset($_SESSION['employerStatus'])){
 <!DOCTYPE html>
 <html>
 
-	<nav class="d-inline-flex navtop">
+	<nav class="navtop">
 		<div>
-			<h1><a href=<?=$redirect_path?>>Job Findr</a> </h1>
+			<h1 style="display:inline"><a href=<?=$redirect_path?>>Job Findr</a> </h1>
 			<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 			<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
