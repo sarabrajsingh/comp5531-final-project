@@ -46,6 +46,9 @@ $stmt->close();
 						<td><?=$_SESSION['name']?></td>
 					</tr>
 					<tr>
+						<?= var_dump($_SESSION); ?>
+</tr>
+					<tr>
 						<td>Password:</td>
 						<td><?=$password?></td>
 					</tr>

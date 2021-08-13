@@ -31,7 +31,6 @@ if (!isset($_SESSION['loggedin'])) {
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="#" class="list-group-item list-group-item-action active">Post a New Job</a>
               <a href="#" class="list-group-item list-group-item-action">User Management</a>              
 			  <a href="#" class="list-group-item list-group-item-action">Contact Us</a>   
             </div> 

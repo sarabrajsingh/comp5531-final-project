@@ -18,7 +18,7 @@ if (isset($_SESSION['employerStatus'])){
 			<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
 	</nav> -->
-   
+<!-- Working for now -->
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
