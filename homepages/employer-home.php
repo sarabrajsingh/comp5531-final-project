@@ -19,13 +19,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="loggedin">
-		<nav class="navtop">
-			<div>
-				<h1><a href="employer-home.php">Job Findr</a></h1>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-			</div>
-		</nav>
+    <?php require 'header.php'; ?>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
 
