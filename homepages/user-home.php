@@ -1,10 +1,10 @@
 <?php
 session_start();
 // If the user is not logged in redirect to the login page...
-echo $_SESSION['loggedin'];
+
 if (!isset($_SESSION['loggedin'])) {
-	//header('Location: index.html');
-	exit("session problem");
+	header('Location: ../index.html');
+	exit("Not logged in.");
 }
 ?>
 
@@ -22,9 +22,11 @@ if (!isset($_SESSION['loggedin'])) {
 	<body class="loggedin">
 		<nav class="navtop">x
 			<div>
-				<h1><a href="user-home.php">Job Findr</a></h1>
+			var_dump($_SESSION);
+			require 'header.php';
+			<!-- <h1><a href="user-home.php">Job Findr</a></h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a> -->
 			</div>
 		</nav>
 

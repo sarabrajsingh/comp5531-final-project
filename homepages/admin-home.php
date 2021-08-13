@@ -19,7 +19,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="loggedin">
-		<nav class="navtop">x
+		<nav class="navtop">
 			<div>
 				<h1>Job Findr</h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
