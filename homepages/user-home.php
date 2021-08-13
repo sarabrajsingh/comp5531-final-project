@@ -22,8 +22,8 @@ if (!isset($_SESSION['loggedin'])) {
 	<body class="loggedin">
 		<nav class="navtop">x
 			<div>
-			var_dump($_SESSION);
-			require 'header.php';
+			<?php var_dump($_SESSION);
+			require 'header.php'; ?>
 			<!-- <h1><a href="user-home.php">Job Findr</a></h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a> -->
