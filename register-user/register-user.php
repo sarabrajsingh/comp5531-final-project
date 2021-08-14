@@ -37,20 +37,23 @@
             password,
             subscriptionLevel, 
             paymentInfos, 
-            isActive) VALUES (?, ?, ?, ?, ?, ?)')
+            isActive,
+            type) VALUES (?, ?, ?, ?, ?, ?, ?)')
         ) {
             /* prepare values */
             $isActive = "1"; // isActive=1 is active, isActive=0 is disabled
-            $type = "user";
+            $type = "employer";
 
             /* bind values to SQL stmt */
-            $stmt->bind_param("ssssss", 
+            $stmt->bind_param("sssssss", 
                 $_POST["CompanyName"],
                 $_POST["register-email"],
                 $hashedPassword,
                 $_POST["subscription"],
                 $paymentInfo,
-                $isActive);
+                $isActive,
+                $type
+            );
         } else {
             print_r($stmt);
             exit("problem with INSERT INTO companies query. check attributes.");
@@ -81,7 +84,8 @@
                 $_POST["subscription"],
                 $paymentInfo,
                 $isActive,
-                $type);
+                $type
+            );
         } else {
             print_r($stmt);
             exit("problem with INSERT INTO users query. check attributes.");
