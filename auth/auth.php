@@ -29,12 +29,14 @@ if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNIO
 			// Verification success! User has logged-in!
 			// Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
 			session_regenerate_id();
-			$_SESSION['loggedin'] = TRUE;
-			// $_SESSION['id'] = $userId;
-			// $_SESSION['name'] = $name;			
+			// if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNION select password, type FROM companies WHERE email = ?')) {
+			
+			// // $_SESSION['id'] = $userId;
+			// // $_SESSION['name'] = $name;			
 			// $_SESSION['subscriptionLevel'] = $subscriptionLevel;
+			// }
 			$_SESSION['type'] = $type;
-
+			$_SESSION['loggedin'] = TRUE;
 			echo json_encode($type);
 
 			if($_SESSION['type'] === 'admin'){
