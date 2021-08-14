@@ -41,7 +41,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<div class="content">
 						<h2>Home Page</h2>
 						<p>Welcome back, <?=$_SESSION['name']?>!</p>
-						<p><?php vardump($_SESSION)
+						<p><?php vardump($_SESSION);?></p>
 					</div>
 		        </div>
 		    </div>
