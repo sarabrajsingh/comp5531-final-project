@@ -47,6 +47,9 @@ $(function () {
                 if (data.errors.password) {
                     $('#login-incorrect-password').html('Incorrect Password').css('color', 'red');
                 }
+                if (!data.errors.isActive) {
+                    $('#disabled-user-message').html('User is Disabled').css('color', 'red');
+                }
             } else {
                 $("#login-form").submit();
             }
@@ -80,12 +83,12 @@ $(function () {
     $('.form-company').hide();
     $('#status').change(function () {
         var selected = $('#status option:selected').text();
-        console.log("selected: "+selected);
-        if($('#status option:selected').text() == "Job-seeker"){
+        console.log("selected: " + selected);
+        if ($('#status option:selected').text() == "Job-seeker") {
             $('.form-company').hide();
             $('.form-group').show();
             $('.form-user').show();
-        }else if($('#status option:selected').text() == "Company"){
+        } else if ($('#status option:selected').text() == "Company") {
             $('.form-user').hide();
             $('.form-group').show();
             $('.form-company').show();
