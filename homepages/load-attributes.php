@@ -3,7 +3,7 @@
 require '../database/db.php';
 
 if ($stmt = $con->prepare("SELECT name, dob, subscriptionLevel, paymentInfos, isActive FROM users WHERE email = ?")){
-    $stmt->bind_param('ssssb', $_SESSION['email']);
+    $stmt->bind_param('s', $_SESSION['email']);
 	$stmt->execute();
     $stmt->bind_result($_SESSION['name'], $_SESSION['dob'], $_SESSION['subscriptionLevel'], $_SESSION['paymentInfos'], $_SESSION['isActive']);
     $stmt->fetch();
