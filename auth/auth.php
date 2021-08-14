@@ -4,12 +4,6 @@ session_start();
 
 require '../database/db.php';
 
-// $_POST['login-email'] = 'admin@admin.com';
-// $_POST['login-password'] = 'admin';
-
-$errors = [];
-$data = [];
-
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 	// Could not get the data that should have been sent.
@@ -17,16 +11,16 @@ if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT userId, name, password, subscriptionLevel, type FROM users WHERE email = ?')) {
+if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNION select password, type FROM companies WHERE email = ?')) {
 	// Bind parameters (s = string, ic = int, b = blob, etc), in our case the username is a string so we use "s"
 
-	$stmt->bind_param('s', $_POST['login-email']);
+	$stmt->bind_param('ss', $_POST['login-email'], $_POST['login-email']);
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
 
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($userId, $name, $password, $subscriptionLevel, $type);
+		$stmt->bind_result($password, $type);
 		$stmt->fetch();
 
 		// Account exists, now we verify the password.
@@ -36,26 +30,23 @@ if ($stmt = $con->prepare('SELECT userId, name, password, subscriptionLevel, typ
 			// Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
 			session_regenerate_id();
 			$_SESSION['loggedin'] = TRUE;
-			$_SESSION['id'] = $userId;
-			$_SESSION['name'] = $name;			
-			$_SESSION['subscriptionLevel'] = $subscriptionLevel;
+			// $_SESSION['id'] = $userId;
+			// $_SESSION['name'] = $name;			
+			// $_SESSION['subscriptionLevel'] = $subscriptionLevel;
 			$_SESSION['type'] = $type;
+
+			echo json_encode($type);
 
 			if($_SESSION['type'] === 'admin'){
 				header('Location: ../homepages/admin-home.php');
 			} else if ($_SESSION['type'] === 'employer') {
-				header('Locaiton: ../homepaages/employer-home.php');
+				header('Location: ../homepages/employer-home.php');
 			} else {
 				header('Location: ../homepages/user-home.php');
 			}
-		} else {
-			// Incorrect password
-			$errors['password'] = 'Incorrect Password';
 		}
-	} else {
-		// Incorrect username
-		$errors['username'] = 'Incorrect Username';
 	}
+	echo json_encode($stmt);
 	$stmt->close();
 }
 ?>
