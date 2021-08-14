@@ -33,7 +33,7 @@ session_start();
 					<div class="form-user">
 						<label for="dob">Date of Birth </label> <input type="date" name="dateOfBirth" id="dateOfBirth" tabindex="1" style="width: 150px;margin-left: 20px;" lass="form-control" value="2018-07-22" required>
 					</div>
-				<?php else : ?>
+				<?php else: ?>
 					<div class="form-company" style="margin-bottom: 20px;">
 						<input type="text" name="CompanyName" id="CompanyName" tabindex="1" class="form-control" placeholder="Company name" value="" required>
 					</div>
