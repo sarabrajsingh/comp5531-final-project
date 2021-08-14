@@ -1,5 +1,6 @@
 <?php
 // This script loads the remaining attributes of the users table into $_SESSION
+require '../database/db.php';
 
 if ($stmt = $con->prepare("SELECT name, dob, subscriptionLevel, paymentInfos, isActive FROM users WHERE email = ?")){
     $stmt->bind_param('ssssb', $_SESSION['email']);
