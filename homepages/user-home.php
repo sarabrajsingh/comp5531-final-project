@@ -6,6 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../index.html');
 	exit("Not logged in.");
 }
+require 'load-attributes.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="loggedin">
-			<?php require 'header.php'; ?>
+			<?php require '../header.php'; ?>
 			<!-- <h1><a href="user-home.php">Job Findr</a></h1>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a> -->
@@ -41,6 +42,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<div class="content">
 						<h2>Home Page</h2>
 						<p>Welcome back, <?=$_SESSION['name']?>!</p>
+						<p><?php var_dump($_SESSION);?></p>
 					</div>
 		        </div>
 		    </div>

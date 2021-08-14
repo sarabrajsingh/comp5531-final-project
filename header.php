@@ -2,9 +2,9 @@
 
 $redirect_path = '';
 if (isset($_SESSION['employerStatus'])){
-    $redirect_path = '"employer-home.php"';
+    $redirect_path = 'employer-home.php';
 } else {
-    $redirect_path = '"user-home.php"';
+    $redirect_path = 'user-home.php';
 }
 ?>
 
@@ -22,7 +22,7 @@ if (isset($_SESSION['employerStatus'])){
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href=<?=$redirect_path?>>Job Findr</a> 
+      <a class="navbar-brand" href='../homepages/<?=$redirect_path?>''>Job Findr</a> 
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="../profile/profile.php"><i class="fas fa-user-circle"></i>Profile</a></li>
