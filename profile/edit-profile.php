@@ -80,7 +80,7 @@ session_start();
 						<input type="radio" id="SubscriptionPrime" name="subscription" value="Gold" tabindex="2">
 						<label for="SubscriptionChoice2">Prime - 20$/month</label>
 					</div>
-				<?php else : ?>
+				<?php else: ?>
 					<div class="form-company">
 						<label>Subcription choice</label>
 						<br>
