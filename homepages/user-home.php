@@ -6,6 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../index.html');
 	exit("Not logged in.");
 }
+require 'load-attributes.php';
 ?>
 
 <!DOCTYPE html>
