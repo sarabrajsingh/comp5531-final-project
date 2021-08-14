@@ -22,9 +22,6 @@ require 'load-attributes.php';
 	</head>
 	<body class="loggedin">
 			<?php require '../header.php'; ?>
-			<!-- <h1><a href="user-home.php">Job Findr</a></h1>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a> -->
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
 
