@@ -22,9 +22,6 @@ session_start();
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-
-
-								<body class="loggedin">
 									<?php require '../header.php'; ?>
 
 									<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
