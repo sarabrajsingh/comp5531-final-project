@@ -47,6 +47,9 @@ $(function () {
                 if (data.errors.password) {
                     $('#login-incorrect-password').html('Incorrect Password').css('color', 'red');
                 }
+                if (!data.errors.isActive) {
+                    $('#disabled-user-message').html('User is Disabled').css('color', 'red');
+                }
             } else {
                 $("#login-form").submit();
             }

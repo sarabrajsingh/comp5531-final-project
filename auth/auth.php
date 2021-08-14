@@ -14,21 +14,11 @@ $data = [];
 if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 	// Could not get the data that should have been sent.
 	exit('Please fill both the username and password fields!');
-}else{
-	print("email: ".$_POST['login-email']." ____ password: ".$_POST['login-password']);
-}
-
-if($_POST['login-email'] === 'admin@admin.com') {
-	if(password_verify($_POST['login-password'], '$2y$10$GCRBD7g/mPz1J9DUsxQ8O..hE9XSOOaCf7LUfYAXKs3AxD.o282BK'))
-	{
-		$_SESSION['name'] = 'Admin';
-		header('Location: ../homepages/admin-home.php');
-	}
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, subscriptionLevel FROM users WHERE email = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, subscriptionLevel, type FROM users WHERE email = ?')) {
+	// Bind parameters (s = string, ic = int, b = blob, etc), in our case the username is a string so we use "s"
 
 	$stmt->bind_param('s', $_POST['login-email']);
 	$stmt->execute();
@@ -36,7 +26,7 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, subscri
 	$stmt->store_result();
 
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($userId, $firstName, $lastName, $password, $subscriptionLevel);
+		$stmt->bind_result($userId, $firstName, $lastName, $password, $subscriptionLevel, $type);
 		$stmt->fetch();
 
 		// Account exists, now we verify the password.
@@ -50,10 +40,11 @@ if ($stmt = $con->prepare('SELECT userId, firstName, lastName, password, subscri
 			$_SESSION['id'] = $userId;
 			$_SESSION['subscriptionLevel'] = $subscriptionLevel;
 			$_SESSION['type'] = $type;
-			// $_SESSION['category'] = $category;
-			// echo 'Welcome ' . $_SESSION['name'] . '!';
-			if($_SESSION['type'] === 'employer'){
-				header('Location: ../homepages/employer-home.php');
+
+			if($_SESSION['type'] === 'admin'){
+				header('Location: ../homepages/admin-home.php');
+			} else if ($_SESSION['type'] === 'employer') {
+				header('Locaiton: ../homepaages/employer-home.php');
 			} else {
 				header('Location: ../homepages/user-home.php');
 			}

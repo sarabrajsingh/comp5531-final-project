@@ -16,16 +16,16 @@ if ( !isset($_POST['login-email'], $_POST['login-password']) ) {
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 
-if ($stmt = $con->prepare('SELECT password FROM users WHERE email = ? UNION SELECT password FROM companies WHERE email = ?;')) {
+if ($stmt = $con->prepare('SELECT password, isActive FROM users WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 
-	$stmt->bind_param('ss', $_POST['login-email'], $_POST['login-email']);
+	$stmt->bind_param('s', $_POST['login-email']);
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
 
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($password);
+		$stmt->bind_result($password, $isActive);
 		$stmt->fetch();
 
 		// Account exists, now we verify the password.
@@ -36,8 +36,11 @@ if ($stmt = $con->prepare('SELECT password FROM users WHERE email = ? UNION SELE
 			// Incorrect password
 			$errors['password'] = 'Incorrect Password';
 		}
+		if(!$isActive) {
+			$errors['isActive'] = false;
+		}
 	} else {
-		// Incorrect username
+		// Incorrect username; ie email not found in users table
 		$errors['username'] = 'Incorrect Username';
 	}
 	$stmt->close();
