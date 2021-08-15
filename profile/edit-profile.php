@@ -25,32 +25,33 @@ session_start();
 		<fieldset>
 			<table>
 				<tr>
-					<td> <label for="name">Name :</label>:</td>
+					<td> <label for="name">Name </label>:</td>
 					<td><input type='text' name='name' id='name' value=<?= $_SESSION['name']; ?>></td>
 				</tr>
 				<?php if ($_SESSION['type'] === 'user') : ?>
 					<tr>
-						<td> <label for="dob">Name :</label>:</td>
+						<td> <label for="dob">Date of Birth </label>:</td>
 						<td><input type='date' name='dob' id='dob' value=<?= $_SESSION['dob']; ?>></td>
 					</tr>
 				<?php endif; ?>
 				<tr>
-					<td> <label for="dob">Email :</label>:</td>
+					<td> <label for="email">Email </label>:</td>
 					<td><input type='email' name='email' id='email' value=<?= $_SESSION['email']; ?> readonly></td>
 				</tr>
 				<tr>
-					<td> <label for="password">Password: :</label>:</td>
+					<td> <label for="password">Password </label>:</td>
 					<td><input type='password' name='password' id='password' value=<?= $_SESSION['password']; ?>></td>
 				</tr>
 				<tr>
-					<td> <label for="subscriptionLevel">Subscription Level :</label>:</td>
-					<td><select name='dob' id='dob'>
-							<?php if ($_SESSION['type'] === 'user') : ?>
-								<option value='basic'>Basic - Free</option>
-							<?php endif; ?>
-							<option value='gold'>Gold - $10/month</option>
-							<option value='prime'>Prime - $20/month</option>
-						</select> </td>
+					<td> <label for="subscriptionLevel">Subscription Level </label>:</td>
+					<td>
+						<?php if ($_SESSION['type'] === 'user') : ?>
+							<label><input type="radio" name="subscriptionLevel" value="basic">Basic - Free</label><br>
+						<?php endif; ?>
+						<label><input type="radio" name="subscriptionLevel" value="gold">Gold - $10/month</label><br>
+						<label><input type="radio" name="subscriptionLevel" value="prime">Prime - $20/month</label>
+						</select>
+					</td>
 				</tr>
 			</table>
 		</fieldset>
