@@ -57,20 +57,20 @@ if (!isset($_SESSION['loggedin'])) {
 						<td>
 							<?php if ($_SESSION['type'] === 'user') : ?>
 								<?php if ($_SESSION['subscriptionLevel'] === 'Basic') : ?>
-									<label><input type="radio" name="subscriptionLevel" value="basic" checked readonly> Basic - Free</label><br>
+									<label><input type="radio" name="subscriptionLevel" value="basic" checked onclick="this.checked = false;"> Basic - Free</label><br>
 								<?php else : ?>
-									<label><input type="radio" name="subscriptionLevel" value="basic" readonly> Basic - Free</label><br>
+									<label><input type="radio" name="subscriptionLevel" value="basic" onclick="this.checked = false;"> Basic - Free</label><br>
 								<?php endif; ?>
 							<?php endif; ?>
 							<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="gold" checked readonly> Gold - $10/month</label><br>
+								<label><input type="radio" name="subscriptionLevel" value="gold" checked onclick="this.checked = false;"> Gold - $10/month</label><br>
 							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="gold" readonly> Gold - $10/month</label><br>
+								<label><input type="radio" name="subscriptionLevel" value="gold" onclick="this.checked = false;"> Gold - $10/month</label><br>
 							<?php endif; ?>
 							<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="prime" checked readonly> Prime - $20/month</label>
+								<label><input type="radio" name="subscriptionLevel" value="prime" checked onclick="this.checked = false;"> Prime - $20/month</label>
 							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="prime" readonly> Prime - $20/month</label>
+								<label><input type="radio" name="subscriptionLevel" value="prime" onclick="this.checked = false;"> Prime - $20/month</label>
 							<?php endif; ?>
 						</td>
 					</tr>
