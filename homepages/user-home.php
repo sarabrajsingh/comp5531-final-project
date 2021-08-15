@@ -29,8 +29,10 @@ require 'load-attributes.php';
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="#" class="list-group-item list-group-item-action">User Management</a>              
-			  <a href="#" class="list-group-item list-group-item-action">Contact Us</a>   
+				<a href="#" class="list-group-item list-group-item-action">Search for a Job</a>
+				<a href="#" class="list-group-item list-group-item-action">Recent Jobs</a>
+				<a href="#" class="list-group-item list-group-item-action">My Job Offers</a>              
+				<a href="#" class="list-group-item list-group-item-action">Contact Us</a>   
             </div> 
 		</div>
 		<div class="col-md-9">

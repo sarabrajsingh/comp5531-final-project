@@ -8,6 +8,9 @@ $(function () {
     $('#recentJobsTab').click(function (e) {
         $(".card-body").load("containers/recent-jobs-page.php");
     });
+    $('#createJobOfferTab').click(function (e) {
+        $(".card-body").load("containers/create-job-offer.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
