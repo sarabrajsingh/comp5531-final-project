@@ -30,9 +30,8 @@ if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNIO
 			// Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
 			session_regenerate_id();
 			$_SESSION['loggedin'] = TRUE;
-			// $_SESSION['id'] = $userId;
-			// $_SESSION['name'] = $name;			
-			// $_SESSION['subscriptionLevel'] = $subscriptionLevel;
+			$_SESSION['email'] = $_POST['login-email'];
+			$_SESSION['password'] = $_POST['login-password'];
 			$_SESSION['type'] = $type;
 			$_SESSION['login-email'] = $_POST['login-email'];
 

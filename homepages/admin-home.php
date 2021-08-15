@@ -5,6 +5,7 @@ if (!isset($_SESSION['loggedin'])) {
 	//header('Location: index.html');
 	exit("session problem");
 }
+require 'load-attributes.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@ if (!isset($_SESSION['loggedin'])) {
 <head>
   <meta charset="utf-8">
   <title>Admin Console</title>
-  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="../css/style.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -22,12 +23,7 @@ if (!isset($_SESSION['loggedin'])) {
 </head>
 
 <body class="loggedin">
-  <nav class="navtop">x
-    <div>
-      <h1>Website Title</h1>
-      <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-      <a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-    </div>
+  <?php require '../header.php'; ?>
   </nav>
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
