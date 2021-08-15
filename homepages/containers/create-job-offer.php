@@ -33,14 +33,7 @@ if (!isset($_SESSION['loggedin'])) {
             <label for="companyName" class="col-12 col-form-label">Company Name</label>
             <select name="companyName" class="textfields" id="companyName">
                 <?php
-                    require '../../database/db.php';
-                    if ($stmt = $con->prepare("SELECT companyName FROM companies WHERE email = ?")) {
-                    $stmt->bind_param("s", $_SESSION["login-email"]);
-                    $stmt->execute();
-                    $stmt->store_result();
-                    $stmt->bind_result($companyName);
-                    $stmt->fetch();
-                    }
+                    session_start();
                     echo '<option>'.$companyName.'</option>';
                 ?>
             </select>

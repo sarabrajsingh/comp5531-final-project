@@ -30,9 +30,29 @@ require 'load-attributes.php';
 		<div class="col-md-3 ">
 		     <div class="list-group ">
 				<a href="#" class="list-group-item list-group-item-action">Search for a Job</a>
-				<a href="#" class="list-group-item list-group-item-action">Recent Jobs</a>
-				<a href="#" class="list-group-item list-group-item-action">My Job Offers</a>              
-				<a href="#" class="list-group-item list-group-item-action">Contact Us</a>   
+				<?php
+					session_start();
+					require "../database/db.php";
+
+					if($stmt = $con->prepare('SELECT isPaid FROM users WHERE email = ? UNION SELECT isPaid FROM companies WHERE email = ?;')) {
+						$stmt->bind_param("ss", $_SESSION["login-email"], $_SESSION["login-email"]);
+						$stmt->execute();
+						$stmt->store_result();
+						if($stmt->num_rows > 0) {
+						$stmt->bind_result($isPaid);
+						$stmt->fetch();
+						} else {
+						echo "num_rows not > 0";
+						}
+					} else {
+						echo "problem interfacing with DB";
+					}
+
+					if($isPaid) {
+						echo '<a href="#" class="list-group-item list-group-item-action">Recent Jobs</a>';
+						echo '<a href="#" class="list-group-item list-group-item-action">My Job Offers</a>';
+					}
+          		?>
             </div> 
 		</div>
 		<div class="col-md-9">
