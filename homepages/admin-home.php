@@ -57,9 +57,9 @@ if (!isset($_SESSION['loggedin'])) {
               <div class="col-md-8">
                 <form id="saveJobForm" action="post-job.php" method="post" role="form" style="display: block;">
                   <div class="form-group row">
-                    <label for="text" class="col-12 col-form-label">Job Title</label>
+                    <label for="jobTitle" class="col-12 col-form-label">Job Title</label>
                     <div class="col-12">
-                      <input id="text" name="text" placeholder="Enter Title here" class="form-control here"
+                      <input id="jobTitle" name="jobTitle" placeholder="Enter Job Title here" class="form-control here"
                         required="required" type="text">
                     </div>
                   </div>
@@ -71,29 +71,29 @@ if (!isset($_SESSION['loggedin'])) {
                           $result = mysqli_query($con, "SELECT * FROM jobTypes"); 
                           while ($row = $result->fetch_assoc()){
                              echo '<option>'. $row["JobType"].'</option>';
-						  }
-					?>
+                        }
+                    ?>
                   </select>
                   <div class="form-group row">
-                    <label for="text" class="col-12 col-form-label">Company Name</label>
+                    <label for="companyName" class="col-12 col-form-label">Company Name</label>
                     <div class="col-12">
-                      <input id="text" name="text" placeholder="Company Name" class="form-control here"
+                      <input id="companyName" name="companyName" placeholder="Company Name" class="form-control here"
                         required="required" type="text">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="text" class="col-12 col-form-label">Salary</label>
                     <div class="col-12">
-                      <input id="text" name="text" placeholder="Lower Salary Amount" class="form-control here"
+                      <input id="lowerSalaryAmount" name="lowerSalaryAmount" placeholder="Lower Salary Amount" class="form-control here"
                         required="required" type="text">
-                      <input id="text" name="text" placeholder="Upper Salary Amount" class="form-control here"
+                      <input id="upperSalaryAmount" name="upperSalaryAmount" placeholder="Upper Salary Amount" class="form-control here"
                         type="text">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="textarea" class="col-12 col-form-label">Description</label>
                     <div class="col-12">
-                      <textarea id="textarea" name="textarea" cols="40" rows="10" class="form-control"></textarea>
+                      <textarea id="description" name="description" cols="40" rows="10" class="form-control"></textarea>
                     </div>
                   </div>
                   <div class="col-md-7">
