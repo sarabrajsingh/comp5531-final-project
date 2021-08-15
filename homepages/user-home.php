@@ -21,7 +21,7 @@ require 'load-attributes.php';
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body class="loggedin">
-			<?php require '../header.php'; ?>
+			<?php require 'header.php'; ?>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
 
