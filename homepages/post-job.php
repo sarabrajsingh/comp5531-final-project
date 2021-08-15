@@ -20,10 +20,10 @@
         jobCategory) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')) {
 
         $datePosted = new DateTime("NOW");
-        $datePostedForDB = $datePosted->format('Y/m/d');
+        $datePostedForDB = $datePosted->format('Y/m/d H:i:s');
         $upperSalaryLimit = null;
         $jobStatus = "vacant";
-        if($_POST['upperSalaryAmount']){
+        if($_POST['upperSalaryAmount']) {
             $upperSalaryAmount = $_POST['upperSalaryAmount'];
         }
         $stmt->bind_param("ssssssss",
