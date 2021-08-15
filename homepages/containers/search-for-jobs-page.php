@@ -1,5 +1,3 @@
-<?php require '../header.php'; ?>
-
 <?php
 session_start();
 // If the user is not logged in redirect to the login page...
@@ -8,23 +6,40 @@ if (!isset($_SESSION['loggedin'])) {
 	exit("session problem");
 }
 ?>
+<script src="js/script.js"></script>
+<!-- search by keyword -->
 <div class="row">
     <div class="col-md-3 border-right">
         <h4>Search for a Job</h4>
-    </div>x
+    </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-md-8">
-        <form id="saveJobForm" action="post-job.php" method="post" role="form" style="display: block;">
-            <div class="form-group row">
-                <label for="jobName" class="col-12 col-form-label">Job Title</label>
-                <div class="col-12">
-                    <input id="jobName" name="jobName" placeholder="Enter Job Title here" class="form-control here"
-                        type="text">
-                </div>
+        <div class="form-group row">
+            <label for="jobName" class="col-12 col-form-label">Job Title</label>
+            <div class="col-12">
+                <input id="jobName" name="jobName" placeholder="Enter Job Title here" class="form-control here"
+                    type="text">
             </div>
-            <label for="jobCategory">Job Type: </label>
+        </div>
+        <div class="col-md-7">
+            <div id="searchResults1"></div>
+            <button type="button" id="searchButton1" class="btn btn-sm btn-primary">Search</button>
+            <button type="button" id="resetButton1" class="btn btn-sm btn-primary">Reset</button>
+        </div>
+    </div>
+</div>
+<!-- search by category -->
+<div class="row">
+    <div class="col-md-3 border-right">
+        <h4>Search for Jobs by Category</h4>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-8">
+    <label for="jobCategory">Job Type: </label>
             <select name="jobCategory" class="textfields" id="jobCategory">
                 <option id="0">-- Select an Occupation --</option>
                 <?php
@@ -35,45 +50,10 @@ if (!isset($_SESSION['loggedin'])) {
                     }
                 ?>
             </select>
-            <input id="addCustomJob" name="addCustomJob" placeholder="Optional - Enter Job Title to Add"
-                class="form-control here" type="text">
-            <button type="button" id="addNewJobType">New Job Type</button>
-            <span id="addNewJobTypeSpanMessage"></span>
-            <div class="form-group row">
-                <label for="companyName" class="col-12 col-form-label">Company Name</label>
-                <select name="companyName" class="textfields" id="companyName">
-                    <?php
-                      require '../../database/db.php';
-                      if ($stmt = $con->prepare("SELECT companyName FROM companies WHERE email = ?")) {
-                        $stmt->bind_param("s", $_SESSION["login-email"]);
-                        $stmt->execute();
-                        $stmt->store_result();
-                        $stmt->bind_result($companyName);
-                        $stmt->fetch();
-                      }
-                      echo '<option>'.$companyName.'</option>';
-                ?>
-                </select>
-            </div>
-            <div class="form-group row">
-                <label for="text" class="col-12 col-form-label">Salary</label>
-                <div class="col-12">
-                    <input id="lowerSalaryAmount" name="lowerSalaryAmount" placeholder="Lower Salary Amount"
-                        class="form-control here" type="number">
-                    <input id="upperSalaryAmount" name="upperSalaryAmount" placeholder="Upper Salary Amount"
-                        class="form-control here" type="number">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="textarea" class="col-12 col-form-label">Description</label>
-                <div class="col-12">
-                    <textarea id="description" name="description" cols="40" rows="10" class="form-control"></textarea>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <span id="saveButtonMessage"></span>
-                <button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>
-            </div>
-        </form>
+        <div class="col-md-7">
+            <div id="searchResults2"></div>  
+            <button type="button" id="searchButton2" class="btn btn-sm btn-primary">Search</button>
+            <button type="button" id="resetButton2" class="btn btn-sm btn-primary">Reset</button>
+        </div>
     </div>
 </div>

@@ -20,24 +20,18 @@ if (!isset($_SESSION['loggedin'])) {
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
 	</head>
-	<body class="loggedin">
-    <?php require 'header.php'; ?>
-
 <body class="loggedin">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
     integrity="#" crossorigin="anonymous">
-
+  <?php require "header.php" ?>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3 ">
         <div class="list-group">
-          <script src="js/script.js"></script>
           <a href="#" id="postNewJobTab" class="list-group-item list-group-item-action">Post a New Job</a>
           <a href="#" id="searchJobTab" class="list-group-item list-group-item-action">Search Jobs</a>
           <a href="#" id="recentJobsTab" class="list-group-item list-group-item-action">Recent Jobs</a>
           <a href="#" id="createJobOfferTab" class="list-group-item list-group-item-action">Create a Job Offer</a>
-          <a href="#" id="userManagementTab" class="list-group-item list-group-item-action">User Management</a>
-          <a href="#" id="contactUsTab" class="list-group-item list-group-item-action">Contact Us</a>
         </div>
       </div>
       <div class="col-md-9">

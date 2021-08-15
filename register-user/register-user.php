@@ -38,21 +38,24 @@
             subscriptionLevel, 
             paymentInfos, 
             isActive,
-            type) VALUES (?, ?, ?, ?, ?, ?, ?)')
+            type,
+            isPaid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
         ) {
             /* prepare values */
             $isActive = "1"; // isActive=1 is active, isActive=0 is disabled
             $type = "employer";
+            $isPaid = "0";
 
             /* bind values to SQL stmt */
-            $stmt->bind_param("sssssss", 
+            $stmt->bind_param("ssssssss", 
                 $_POST["CompanyName"],
                 $_POST["register-email"],
                 $hashedPassword,
                 $_POST["subscription"],
                 $paymentInfo,
                 $isActive,
-                $type
+                $type,
+                $isPaid
             );
         } else {
             print_r($stmt);
@@ -68,15 +71,17 @@
                 subscriptionLevel, 
                 paymentInfos, 
                 isActive, 
-                type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+                type,
+                isPaid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
             ) {
             /* prepare values */
             $name = $_POST["firstName"].' '.$_POST["lastName"];
             $isActive = "1"; // isActive=1 is active, isActive=0 is disabled
             $type = "user";
+            $isPaid = "0";
 
             /* bind values to SQL stmt */
-            $stmt->bind_param("ssssssss", 
+            $stmt->bind_param("sssssssss", 
                 $name,
                 $_POST["register-email"],
                 $hashedPassword,
@@ -84,7 +89,8 @@
                 $_POST["subscription"],
                 $paymentInfo,
                 $isActive,
-                $type
+                $type,
+                $isPaid
             );
         } else {
             print_r($stmt);

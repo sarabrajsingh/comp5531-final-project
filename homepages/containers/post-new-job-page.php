@@ -1,5 +1,3 @@
-<?php require '../header.php'; ?>
-
 <?php
 session_start();
 // If the user is not logged in redirect to the login page...
@@ -8,10 +6,11 @@ if (!isset($_SESSION['loggedin'])) {
 	exit("session problem");
 }
 ?>
+<script src="js/script.js"></script>
 <div class="row">
     <div class="col-md-3 border-right">
         <h4>Post a New Job</h4>
-    </div>x
+    </div>
 </div>
 <hr>
 <div class="row">
