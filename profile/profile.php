@@ -34,50 +34,55 @@ if (!isset($_SESSION['loggedin'])) {
 			<p>Your account details are below:</p>
 			<table>
 				<tr>
-					<td> <label for="name">Name: </label></td>
-					<td><input type='text' name='name' id='name' value='<?= $_SESSION['name']; ?>' readonly></td>
-				</tr>
-				<?php if ($_SESSION['type'] === 'user') : ?>
-					<tr>
-						<td> <label for="dob">Date of Birth: </label></td>
-						<td><input type='date' name='dob' id='dob' value='<?= $_SESSION['dob']; ?>' readonly></td>
-					</tr>
-				<?php endif; ?>
-				<tr>
-					<td> <label for="email">Email: </label></td>
-					<td><input type='email' name='email' id='email' value='<?= $_SESSION['email']; ?>' readonly></td>
+					<td> Name: </td>
+					<td><?= $_SESSION['name']; ?></td>
 				</tr>
 				<tr>
-					<td> <label for="password">Password: </label></td>
+					<td> Date of birth: </td>
+					<td><?= $_SESSION['dob']; ?></td>
+				</tr>
+				<tr>
+					<td>Email: </td>
+					<td><?= $_SESSION['email']; ?></td>
+				</tr>
+				<tr>
+					<td>Password: </td>
 					<td><input type='password' name='password' id='password' value='<?= $_SESSION['password']; ?>' readonly></td>
 				</tr>
 				<?php if ($_SESSION['type'] != 'admin') : ?>
 					<tr>
 						<td>Subscription Level: </td>
-						<td>
-							<?php if ($_SESSION['type'] === 'user') : ?>
-								<?php if ($_SESSION['subscriptionLevel'] === 'Basic') : ?>
-									<label><input type="radio" name="subscriptionLevel" value="basic" checked onclick="this.checked = false;"> Basic - Free</label><br>
-								<?php else : ?>
-									<label><input type="radio" name="subscriptionLevel" value="basic" onclick="this.checked = false;"> Basic - Free</label><br>
-								<?php endif; ?>
-							<?php endif; ?>
-							<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="gold" checked onclick="this.checked = false;"> Gold - $10/month</label><br>
-							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="gold" onclick="this.checked = false;"> Gold - $10/month</label><br>
-							<?php endif; ?>
-							<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="prime" checked onclick="this.checked = false;"> Prime - $20/month</label>
-							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="prime" onclick="this.checked = false;"> Prime - $20/month</label>
-							<?php endif; ?>
-						</td>
+						<td><?= $_SESSION['subscriptionLevel']; ?></td>
 					</tr>
-				<?php endif; ?>
 			</table>
-			<button onclick="window.location='edit-profile.php'">Edit profile</button>
-			<button onclick="window.location='delete-profile.php'">Delete profile</button>
+		</div>
+		<div>
+			<p>Your payment information follows: </p>
+			<table>
+				<tr>
+					<td>Name on Card: </td>
+					<td><?= $_SESSION['nameOnCard']; ?></td>
+				</tr>
+				<tr>
+					<td>Credit Card Number: </td>
+					<td><input type='password' name='cardNumber' id='cardNumber' value='<?= $_SESSION['cardNumber']; ?>' readonly></td>
+				</tr>
+				<tr>
+					<td>Expiration Date: </td>
+					<td><?= $_SESSION['expirationDate']; ?></td>
+				</tr>
+				<tr>
+					<td>CVV :</td>
+					<td><input type='password' name='cvv' id='cvv' value='<?= $_SESSION['cvv']; ?>' readonly></td>
+				</tr>
+			<?php endif; ?>
+			</table>
+		</div>
+		<div>
+			<?php if ($_SESSION['type'] != 'admin') : ?>
+				<button onclick="window.location='edit-profile.php'">Edit profile</button>
+				<button onclick="window.location='delete-profile.php'">Delete profile</button>
+			<?php endif; ?>
 		</div>
 	</div>
 </body>
