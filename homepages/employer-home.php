@@ -40,6 +40,7 @@ if (!isset($_SESSION['loggedin'])) {
           <a href="#" class="list-group-item list-group-item-action active">Post a New Job</a>
           <a href="#" class="list-group-item list-group-item-action">Search Jobs</a>
           <a href="#" class="list-group-item list-group-item-action">Recent Jobs</a>
+          <a href="#" class="list-group-item list-group-item-action">Create a Job Offer</a>
           <a href="#" class="list-group-item list-group-item-action">User Management</a>
           <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
         </div>
