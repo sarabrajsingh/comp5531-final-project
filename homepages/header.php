@@ -1,5 +1,4 @@
 <?php
-session_start();
 $redirect_path = '';
 if (isset($_SESSION['employerStatus'])){
     $redirect_path = 'employer-home.php';

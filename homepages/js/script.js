@@ -125,4 +125,8 @@ $(function () {
             }
         });
     });
+    $('#createJobOfferButton').click(function (e) {
+        e.preventDefault();
+        alert("test");
+    });
 });

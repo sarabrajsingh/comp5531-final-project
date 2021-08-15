@@ -1,4 +1,5 @@
 <?php
+session_start();
 // This script loads the remaining attributes of either the users or companies tables into $_SESSION
 require '../database/db.php';
 if ($_SESSION['type'] === 'employer' && $stmt = $con->prepare("SELECT companyName, subscriptionLevel, paymentInfos FROM companies WHERE email = ?")) {

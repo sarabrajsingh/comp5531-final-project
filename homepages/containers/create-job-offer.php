@@ -19,22 +19,31 @@ if (!isset($_SESSION['loggedin'])) {
             <label for="companyName" class="col-12 col-form-label">Company Name</label>
             <select name="companyName" class="textfields" id="companyName">
                 <?php
-                    require '../../database/db.php';
-                    if ($stmt = $con->prepare("SELECT companyName FROM companies WHERE email = ?")) {
-                    $stmt->bind_param("s", $_SESSION["login-email"]);
-                    $stmt->execute();
-                    $stmt->store_result();
-                    $stmt->bind_result($companyName);
-                    $stmt->fetch();
-                    }
-                    echo '<option>'.$companyName.'</option>';
+                    // require '../../database/db.php';
+                    // if ($stmt = $con->prepare("SELECT companyName FROM companies WHERE email = ?")) {
+                    // $stmt->bind_param("s", $_SESSION["login-email"]);
+                    // $stmt->execute();
+                    // $stmt->store_result();
+                    // $stmt->bind_result($companyName);
+                    // $stmt->fetch();
+                    // }
+                    echo '<option>'.$_SESSION["name"].'</option>';
                 ?>
             </select>
-            <label for="companyName" class="col-12 col-form-label">Company Name</label>
+            <label for="companyName" class="col-12 col-form-label">Job</label>
             <select name="companyName" class="textfields" id="companyName">
                 <?php
-                    session_start();
-                    echo '<option>'.$companyName.'</option>';
+                    require '../../database/db.php';
+                    if ($stmt = $con->prepare("SELECT jobName, datePosted FROM jobs WHERE companyName = ?")) {
+                        $stmt->bind_param("s", $_SESSION["name"]);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    }
+                    while ($row = $result->fetch_assoc()){
+                        if($row["jobName"] != "") {
+                            echo '<option>'.$row["datePosted"]."-".$row["jobName"].'</option>';
+                        }
+                    }
                 ?>
             </select>
             <label for="jobOfferForUser" class="col-12 col-form-label">User</label>
@@ -50,15 +59,9 @@ if (!isset($_SESSION['loggedin'])) {
             ?>
             </select>
         </div>
-        <div class="form-group row">
-            <label for="textarea" class="col-12 col-form-label">Description</label>
-            <div class="col-12">
-                <textarea id="description" name="description" cols="40" rows="10" class="form-control"></textarea>
-            </div>
-        </div>
         <div class="col-md-7">
-            <span id="saveButtonMessage"></span>
-            <button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>
+            <span id="createJobOfferSpanMessage"></span>
+            <button type="button" id="createJobOfferButton" class="btn btn-sm btn-primary">Create Job Offer</button>
         </div>
     </div>
 </div>

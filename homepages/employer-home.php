@@ -1,6 +1,5 @@
 <?php
 require 'load-attributes.php';
-session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
 	//header('Location: index.html');
@@ -30,7 +29,6 @@ if (!isset($_SESSION['loggedin'])) {
         <div class="list-group">
           <a href="#" id="searchJobTab" class="list-group-item list-group-item-action">Search Jobs</a>
           <?php
-              session_start();
               require "../database/db.php";
 
               if($stmt = $con->prepare('SELECT isPaid FROM users WHERE email = ? UNION SELECT isPaid FROM companies WHERE email = ?;')) {
