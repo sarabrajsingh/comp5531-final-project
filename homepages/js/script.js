@@ -127,6 +127,21 @@ $(function () {
     });
     $('#createJobOfferButton').click(function (e) {
         e.preventDefault();
-        alert("test");
+        $.ajax({
+            url: "containers/db/submit-job-offer.php",
+            type: "POST",
+            datatype: "JSON",
+            data: {
+                "companyName": $('#companyName').val(),
+                "selectedJobFromCompany": $('#selectedJobFromCompany').val(),
+                "jobOfferForUser": $('#jobOfferForUser').val()
+            },
+            encode: true
+        }).done(function (data) {
+            data = JSON.parse(data);
+            if (data.success) {
+                $('#createJobOfferSpanMessage').html("Successfully Submitted Job Offer to Candidate").css("color", "green");
+            }
+        });
     });
 });

@@ -30,8 +30,8 @@ if (!isset($_SESSION['loggedin'])) {
                     echo '<option>'.$_SESSION["name"].'</option>';
                 ?>
             </select>
-            <label for="companyName" class="col-12 col-form-label">Job</label>
-            <select name="companyName" class="textfields" id="companyName">
+            <label for="selectedJobFromCompany" class="col-12 col-form-label">Select Job From Company</label>
+            <select name="selectedJobFromCompany" class="textfields" id="selectedJobFromCompany">
                 <?php
                     require '../../database/db.php';
                     if ($stmt = $con->prepare("SELECT jobName, datePosted FROM jobs WHERE companyName = ?")) {
@@ -41,7 +41,7 @@ if (!isset($_SESSION['loggedin'])) {
                     }
                     while ($row = $result->fetch_assoc()){
                         if($row["jobName"] != "") {
-                            echo '<option>'.$row["datePosted"]."-".$row["jobName"].'</option>';
+                            echo '<option>'.$row["jobName"].'</option>';
                         }
                     }
                 ?>
