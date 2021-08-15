@@ -29,7 +29,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
 
 	<div class="content">
-		<h2>Profile Page</h2>
+		<h2>Your Profile</h2>
 		<div>
 			<p>Your account details are below:</p>
 			<table>
@@ -38,10 +38,10 @@ if (!isset($_SESSION['loggedin'])) {
 					<td><?= $_SESSION['name']; ?></td>
 				</tr>
 				<?php if ($_SESSION['type'] === 'user') : ?>
-				<tr>
-					<td> Date of birth:</td>
-					<td><?= $_SESSION['dob']; ?></td>
-				</tr>
+					<tr>
+						<td> Date of birth:</td>
+						<td><?= $_SESSION['dob']; ?></td>
+					</tr>
 				<?php endif; ?>
 				<tr>
 					<td>Email:</td>
@@ -51,15 +51,15 @@ if (!isset($_SESSION['loggedin'])) {
 					<td>Password:</td>
 					<td><?= $_SESSION['password']; ?></td>
 				</tr>
-				<tr>
-					<td> Subscription Level:</td>
-					<td><?= $_SESSION['subscriptionLevel']; ?></td>
-				</tr>
+				<?php if ($_SESSION['type'] != 'admin') : ?>
+					<tr>
+						<td> Subscription Level:</td>
+						<td><?= $_SESSION['subscriptionLevel']; ?></td>
+					</tr>
 			</table>
-			<?php if ($_SESSION['type'] != 'admin') : ?>
-				<button onclick="window.location='edit-profile.php'">Edit profile</button>
-				<button onclick="window.location='delete-profile.php'">Delete profile</button>
-			<?php endif; ?>
+			<button onclick="window.location='edit-profile.php'">Edit profile</button>
+			<button onclick="window.location='delete-profile.php'">Delete profile</button>
+		<?php endif; ?>
 		</div>
 	</div>
 </body>
