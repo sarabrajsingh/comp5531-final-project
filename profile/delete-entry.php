@@ -31,5 +31,5 @@ if ($_SESSION["type"] === "employer") {
 if ($stmt->errno != 0) {
     exit('error = ' . $stmt->error);
 } else {
-    header("Location: ../profile/delete-success.html");
+    header("Location: ../profile/deletion-success.html");
 }
