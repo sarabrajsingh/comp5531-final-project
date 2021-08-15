@@ -23,7 +23,7 @@ require 'load-attributes.php';
 </head>
 
 <body class="loggedin">
-  <?php require '../header.php'; ?>
+  <?php require 'header.php'; ?>
   </nav>
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"

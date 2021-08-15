@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin'])) {
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Home Page</title>
+		<title>Employer Home Page</title>
 		<link href="../css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -21,7 +21,7 @@ if (!isset($_SESSION['loggedin'])) {
     <script src="js/script.js"></script>
 	</head>
 	<body class="loggedin">
-    <?php require '../header.php'; ?>
+    <?php require 'header.php'; ?>
 
 <body class="loggedin">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
