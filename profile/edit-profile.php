@@ -22,7 +22,7 @@ session_start();
 
 	<div class="content">
 		<h2>Edit Your Profile</h2>
-		<fieldset>
+		<div>
 			<table>
 				<tr>
 					<td> <label for="name">Name : </label></td>
@@ -66,7 +66,7 @@ session_start();
 				</tr>
 			</table>
 			<button onclick="window.location='update-profile.php'">Save</button>
-		</fieldset>
+		</div>
 	</div>
 
 </body>
