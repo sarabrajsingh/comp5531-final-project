@@ -23,7 +23,30 @@ session_start();
 	<div class="content">
 		<h2>Profile Page</h2>
 		<fieldset>
-			<label><input type='text' name='name' id='name' value=<?= $_SESSION['name']; ?>></label>
+				<table>
+				<tr>
+					<td> <label for="name">Name :</label>:</td>
+					<td><input type='text' name='name' id='name' value=<?= $_SESSION['name']; ?>></td>
+				</tr>
+				<!-- <?php if ($_SESSION['type'] === 'user') : ?>
+				<tr>
+					<td> Date of birth:</td>
+					<td><?= $_SESSION['dob']; ?></td>
+				</tr>
+				<?php endif; ?>
+				<tr>
+					<td>Email:</td>
+					<td><?= $_SESSION['email']; ?></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><?= $_SESSION['password']; ?></td>
+				</tr>
+				<tr>
+					<td> Subscription Level:</td>
+					<td><?= $_SESSION['subscriptionLevel']; ?></td>
+				</tr> -->
+			</table>
 		</fieldset>
 	</div>
 

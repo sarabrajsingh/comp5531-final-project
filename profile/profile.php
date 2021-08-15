@@ -37,7 +37,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<td> Name:</td>
 					<td><?= $_SESSION['name']; ?></td>
 				</tr>
-				<?php if ($_SESSION['type'] === 'job-seeker') : ?>
+				<?php if ($_SESSION['type'] === 'user') : ?>
 				<tr>
 					<td> Date of birth:</td>
 					<td><?= $_SESSION['dob']; ?></td>
