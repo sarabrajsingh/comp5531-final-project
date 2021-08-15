@@ -25,21 +25,21 @@ session_start();
 		<div>
 			<table>
 				<tr>
-					<td> <label for="name">Name : </label></td>
+					<td> <label for="name">Name: </label></td>
 					<td><input type='text' name='name' id='name' value='<?= $_SESSION['name']; ?>'></td>
 				</tr>
 				<?php if ($_SESSION['type'] === 'user') : ?>
 					<tr>
-						<td> <label for="dob">Date of Birth : </label></td>
+						<td> <label for="dob">Date of Birth: </label></td>
 						<td><input type='date' name='dob' id='dob' value='<?= $_SESSION['dob']; ?>'></td>
 					</tr>
 				<?php endif; ?>
 				<tr>
-					<td> <label for="email">Email : </label></td>
+					<td> <label for="email">Email: </label></td>
 					<td><input type='email' name='email' id='email' value='<?= $_SESSION['email']; ?>' readonly></td>
 				</tr>
 				<tr>
-					<td> <label for="password">Password : </label></td>
+					<td> <label for="password">Password: </label></td>
 					<td><input type='password' name='password' id='password' value='<?= $_SESSION['password']; ?>'></td>
 				</tr>
 				<tr>
