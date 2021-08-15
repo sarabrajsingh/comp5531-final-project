@@ -39,7 +39,7 @@ if ($_SESSION["type"] === "employer" && ($_SESSION['name'] != $_POST['name'] || 
         $_SESSION['cvv'] = $paymentInfos[3];
     } else {
         print_r($stmt);
-        exit("problem with SELECT FROM companies query. check attributes.");
+        exit("problem with UPDATE companies query. check attributes.");
     }
 } else if ($_SESSION["type"] === "user" && ($_SESSION['name'] != $_POST['name'] || $_SESSION['password'] != $_POST['password'] || $_SESSION['dob'] != $_POST['dob'] || $_SESSION['subscriptionLevel'] != $_POST['subscriptionLevel'] || $_SESSION['paymentInfos'] != $paymentInfos)) {
     /* check db entry from USERS table */
@@ -61,12 +61,12 @@ if ($_SESSION["type"] === "employer" && ($_SESSION['name'] != $_POST['name'] || 
         $_SESSION['cvv'] = $paymentInfos[3];
     } else {
         print_r($stmt);
-        exit("problem with SELECT FROM users query. check attributes.");
+        exit("problem with UPDATE users query. check attributes.");
     }
 }
 
 if ($stmt->errno != 0) {
     exit('error = ' . $stmt->error);
 } else {
-    header("Location: ../profile/success.html");
+    header("Location: ../profile/update-success.html");
 }
