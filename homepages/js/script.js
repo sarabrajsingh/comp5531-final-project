@@ -64,4 +64,49 @@ $(function () {
             });
         }
     });
+    $('#searchButton1').click(function (e) {
+        $.ajax({
+            url: "containers/db/search-job-db.php",
+            type: "POST",
+            datatype: "JSON",
+            data: {
+                "jobTitle": $('#jobName').val(),
+                "jobCategory": $('#jobCategory').val()
+            },
+            encode: true
+        }).done(function (data) {
+            data = JSON.parse(data);
+            var resultsContainer = document.getElementById("searchResults1");
+            resultsContainer.innerHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+            }
+        });
+    });
+    $('#resetButton1').click(function (e) {
+        resultsContainer = document.getElementById("searchResults1");
+        resultsContainer.innerHTML = "";
+    });
+    $('#searchButton2').click(function (e) {
+        $.ajax({
+            url: "containers/db/search-job-category.php",
+            type: "POST",
+            datatype: "JSON",
+            data: {
+                "jobCategory": $('#jobCategory').val()
+            },
+            encode: true
+        }).done(function (data) {
+            data = JSON.parse(data);
+            var resultsContainer = document.getElementById("searchResults2");
+            resultsContainer.innerHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+            }
+        });
+    });
+    $('#resetButton2').click(function (e) {
+        resultsContainer = document.getElementById("searchResults2");
+        resultsContainer.innerHTML = "";
+    });
 });
