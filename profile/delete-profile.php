@@ -33,7 +33,7 @@ if (!isset($_SESSION['loggedin'])) {
 			<p>Are you sure you want to delete your account?</p>
 			
 		<div>
-				<button onclick="window.location='edit-profile.php'">Yes</button>
+				<button onclick="window.location='delete-entry.php'">Yes</button>
 				<button onclick="window.location='profile.php'">Cancel</button>
 		</div>
 	</div>
