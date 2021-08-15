@@ -1,4 +1,13 @@
 $(function () {
+    $('#postNewJobTab').click(function (e) {
+        $(".card-body").load("containers/post-new-job-page.php");
+    });
+    $('#searchJobTab').click(function (e) {
+        $(".card-body").load("containers/search-for-jobs-page.php");
+    });
+    $('#recentJobsTab').click(function (e) {
+        $(".card-body").load("containers/recent-jobs-page.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -10,7 +19,7 @@ $(function () {
                 "jobCategory": $('#jobCategory').val(),
                 "companyName": $('#companyName').val(),
                 "lowerSalaryAmount": $('#lowerSalaryAmount').val(),
-                "upperSalaryAmount": $('#upperSalaryAmount').val(),
+                "upperSal   aryAmount": $('#upperSalaryAmount').val(),
                 "description": $('#description').val()
             },
             encode: true
