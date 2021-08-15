@@ -109,4 +109,17 @@ $(function () {
         resultsContainer = document.getElementById("searchResults2");
         resultsContainer.innerHTML = "";
     });
+    $('#showRecentJobsButton').click(function (e) {
+        $.ajax({
+            url: "containers/db/recent-job-search.php",
+            encode: true
+        }).done(function (data) {
+            data = JSON.parse(data);
+            var resultsContainer = document.getElementById("showRecentJobsResults");
+            resultsContainer.innerHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+            }
+        });
+    });
 });
