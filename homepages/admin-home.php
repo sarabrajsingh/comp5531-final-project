@@ -65,7 +65,7 @@ if (!isset($_SESSION['loggedin'])) {
                   </div>
                   <label for="selectJobType">Job Type: </label>
                   <select name="selectJobType" class="textfields" id="choosenJobType">
-                    <option id="0">-- Select an Occupation -- </option>
+                    <option id="0">-- Select an Occupation --</option>
                     <?php
                           require '../database/db.php';
                           $result = mysqli_query($con, "SELECT * FROM jobTypes"); 
@@ -76,18 +76,24 @@ if (!isset($_SESSION['loggedin'])) {
                   </select>
                   <div class="form-group row">
                     <label for="companyName" class="col-12 col-form-label">Company Name</label>
-                    <div class="col-12">
-                      <input id="companyName" name="companyName" placeholder="Company Name" class="form-control here"
-                        required="required" type="text">
-                    </div>
+                    <select name="companyName" class="textfields" id="companyName">
+                    <option id="0">-- Select a Company --</option>
+                    <?php
+                          require '../database/db.php';
+                          $result = mysqli_query($con, "SELECT companyName FROM companies"); 
+                          while ($row = $result->fetch_assoc()){
+                             echo '<option>'. $row["companyName"].'</option>';
+                        }
+                    ?>
+                  </select>
                   </div>
                   <div class="form-group row">
                     <label for="text" class="col-12 col-form-label">Salary</label>
                     <div class="col-12">
                       <input id="lowerSalaryAmount" name="lowerSalaryAmount" placeholder="Lower Salary Amount" class="form-control here"
-                        required="required" type="text">
+                        required="required" type="number">
                       <input id="upperSalaryAmount" name="upperSalaryAmount" placeholder="Upper Salary Amount" class="form-control here"
-                        type="text">
+                        type="number">
                     </div>
                   </div>
                   <div class="form-group row">
