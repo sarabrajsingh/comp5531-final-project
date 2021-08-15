@@ -24,7 +24,7 @@ if (!isset($_SESSION['loggedin'])) {
             </div>
         </div>
         <div class="col-md-7">
-            <div id="searchResults1"></div>  
+            <div id="searchResults1"></div>
             <button type="button" id="searchButton1" class="btn btn-sm btn-primary">Search</button>
             <button type="button" id="resetButton1" class="btn btn-sm btn-primary">Reset</button>
         </div>
