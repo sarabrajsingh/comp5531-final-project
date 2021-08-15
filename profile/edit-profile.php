@@ -16,7 +16,7 @@ session_start();
 
 <body class='loggedin'>
 
-	<?php require '../header.php'; ?>
+	<?php require '../homepages/header.php'; ?>
 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
 
