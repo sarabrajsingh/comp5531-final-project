@@ -1,7 +1,4 @@
 $(function () {
-    // $('#saveButton').click(function e() {
-    //     $('#saveJobForm').submit();
-    // });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -29,5 +26,33 @@ $(function () {
                 $('#saveJobForm').trigger("reset");
             }
         });
+    });
+    $('#addNewJobType').click(function (e) {
+        e.preventDefault();
+        if ($('#addCustomJob').val() == "") {
+            $('#addNewJobTypeSpanMessage').html("enter a custom job type").css("color", "red");
+        } else {
+            $.ajax({
+                url: "add-new-job-type.php",
+                type: "POST",
+                datatype: "JSON",
+                data: {
+                    "addCustomJob": $('#addCustomJob').val()
+                },
+                encode: true
+            }).done(function (data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if (!data.success) {
+                    $('#addNewJobTypeSpanMessage').html("Error Creating Job Type - check values").css("color", "red");
+                }
+                if (data.success) {
+                    // reset form after success
+                    $('#saveJobForm').trigger("reset");
+                    alert("Successfully Added Custom Job Type!");
+                    location.reload();
+                }
+            });
+        }
     });
 });

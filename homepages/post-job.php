@@ -37,7 +37,6 @@
             $_POST["jobCategory"]
         );
     } else {
-        print_r($stmt);
         $error["failure"] = "problem with INSERT INTO jobs query. check attributes";
     }
 

@@ -34,6 +34,7 @@ if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNIO
 			// $_SESSION['name'] = $name;			
 			// $_SESSION['subscriptionLevel'] = $subscriptionLevel;
 			$_SESSION['type'] = $type;
+			$_SESSION['login-email'] = $_POST['login-email'];
 
 			echo json_encode($type);
 
