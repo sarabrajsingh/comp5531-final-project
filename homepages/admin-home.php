@@ -57,14 +57,14 @@ if (!isset($_SESSION['loggedin'])) {
               <div class="col-md-8">
                 <form id="saveJobForm" action="post-job.php" method="post" role="form" style="display: block;">
                   <div class="form-group row">
-                    <label for="jobTitle" class="col-12 col-form-label">Job Title</label>
+                    <label for="jobName" class="col-12 col-form-label">Job Title</label>
                     <div class="col-12">
-                      <input id="jobTitle" name="jobTitle" placeholder="Enter Job Title here" class="form-control here"
+                      <input id="jobName" name="jobName" placeholder="Enter Job Title here" class="form-control here"
                         required="required" type="text">
                     </div>
                   </div>
-                  <label for="selectJobType">Job Type: </label>
-                  <select name="selectJobType" class="textfields" id="choosenJobType">
+                  <label for="jobCategory">Job Type: </label>
+                  <select name="jobCategory" class="textfields" id="jobCategory">
                     <option id="0">-- Select an Occupation --</option>
                     <?php
                           require '../database/db.php';
@@ -103,6 +103,7 @@ if (!isset($_SESSION['loggedin'])) {
                     </div>
                   </div>
                   <div class="col-md-7">
+                    <span id="saveButtonMessage"></span>
                     <button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>
                   </div>
                 </form>
