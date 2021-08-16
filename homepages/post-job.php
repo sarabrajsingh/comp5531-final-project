@@ -1,7 +1,7 @@
 <?php   
 
     require "../database/db.php";
-
+    
     $errors = [];
     $data = array();
 
