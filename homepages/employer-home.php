@@ -1,5 +1,5 @@
 <?php
-session_start(['read_and_close'  => true]);
+session_start();
 require 'load-attributes.php';
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
