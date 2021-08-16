@@ -5,8 +5,8 @@
     $errors = [];
     $data = array();
 
-    if(!isset($_POST["jobName"], $_POST["jobCategory"], $_POST["companyName"], $_POST["lowerSalaryAmount"], $_POST["description"])) {
-        exit("problem parsing attributes");
+    if(!isset($_POST["jobName"], $_POST["jobCategory"], $_POST["companyName"], $_POST["lowerSalaryAmount"], $_POST["description"], $_POST["numVacancies"])) {
+        $errors["failure"] = "problem parsing attributes";
     }
 
     if ($stmt = $con->prepare('INSERT INTO jobs (
@@ -17,7 +17,8 @@
         description,
         lowerSalaryLimit,
         upperSalaryLimit,
-        jobCategory) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')) {
+        jobCategory,
+        numVacancies) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')) {
 
         $datePosted = new DateTime("NOW");
         $datePostedForDB = $datePosted->format('Y/m/d H:i:s');
@@ -26,7 +27,7 @@
         if($_POST['upperSalaryAmount']) {
             $upperSalaryAmount = $_POST['upperSalaryAmount'];
         }
-        $stmt->bind_param("ssssssss",
+        $stmt->bind_param("sssssssss",
             $_POST["jobName"],
             $_POST["companyName"],
             $datePostedForDB,
@@ -34,7 +35,8 @@
             $_POST["description"],
             $_POST["lowerSalaryAmount"],
             $upperSalaryAmount,
-            $_POST["jobCategory"]
+            $_POST["jobCategory"],
+            $_POST["numVacancies"]
         );
     } else {
         $error["failure"] = "problem with INSERT INTO jobs query. check attributes";
@@ -49,6 +51,7 @@
     if (!empty($errors)) {
         $data['success'] = false;
         $data['errors'] = $errors;
+        $data['POST'] = $_POST;
     } else {
         $data['success'] = true;
         $data['message'] = 'Success!';

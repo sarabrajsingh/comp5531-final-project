@@ -28,8 +28,9 @@ $(function () {
                 "jobCategory": $('#jobCategory').val(),
                 "companyName": $('#companyName').val(),
                 "lowerSalaryAmount": $('#lowerSalaryAmount').val(),
-                "upperSal   aryAmount": $('#upperSalaryAmount').val(),
-                "description": $('#description').val()
+                "upperSalaryAmount": $('#upperSalaryAmount').val(),
+                "description": $('#description').val(),
+                "numVacancies": $('#numVacancies').val()
             },
             encode: true
         }).done(function (data) {
