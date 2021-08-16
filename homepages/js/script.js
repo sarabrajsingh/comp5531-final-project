@@ -207,4 +207,7 @@ $(function () {
             }
         });
     });
+    $('#acceptJobButton').click(function (e) {
+        alert("test");
+    });
 });
