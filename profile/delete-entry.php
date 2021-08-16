@@ -13,7 +13,7 @@ if ($_SESSION["type"] === "employer") {
         $stmt->execute();
     } else {
         print_r($stmt);
-        exit("problem with UPDATE companies query. check attributes.");
+        exit("problem with DELETE companies query. check attributes.");
     }
 } else {
     /* check db entry from USERS table */
@@ -24,7 +24,7 @@ if ($_SESSION["type"] === "employer") {
         $stmt->execute();
     } else {
         print_r($stmt);
-        exit("problem with UPDATE users query. check attributes.");
+        exit("problem with DELETE users query. check attributes.");
     }
 }
 

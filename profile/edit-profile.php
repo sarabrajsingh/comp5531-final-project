@@ -53,6 +53,7 @@ session_start();
 									<label><input type="radio" name="subscriptionLevel" value="Basic"> Basic - Free</label><br>
 								<?php endif; ?>
 							<?php endif; ?>
+							<?php if ($_SESSION['type'] === 'user') : ?>
 							<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
 								<label><input type="radio" name="subscriptionLevel" value="Gold" checked> Gold - $10/month</label><br>
 							<?php else : ?>
@@ -62,6 +63,18 @@ session_start();
 								<label><input type="radio" name="subscriptionLevel" value="Prime" checked> Prime - $20/month</label>
 							<?php else : ?>
 								<label><input type="radio" name="subscriptionLevel" value="Prime"> Prime - $20/month</label>
+							<?php endif; ?>
+							<?php else : ?>
+							<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
+								<label><input type="radio" name="subscriptionLevel" value="Gold" checked> Gold - $50/month</label><br>
+							<?php else : ?>
+								<label><input type="radio" name="subscriptionLevel" value="Gold"> Gold - $50/month</label><br>
+							<?php endif; ?>
+							<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
+								<label><input type="radio" name="subscriptionLevel" value="Prime" checked> Prime - $100/month</label>
+							<?php else : ?>
+								<label><input type="radio" name="subscriptionLevel" value="Prime"> Prime - $100/month</label>
+							<?php endif; ?>
 							<?php endif; ?>
 						</td>
 					</tr>

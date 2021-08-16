@@ -37,10 +37,12 @@ if (!isset($_SESSION['loggedin'])) {
 					<td> Name: </td>
 					<td><?= $_SESSION['name']; ?></td>
 				</tr>
+				<?php if ($_SESSION['type'] == 'user'): ?>
 				<tr>
 					<td> Date of birth: </td>
 					<td><?= $_SESSION['dob']; ?></td>
 				</tr>
+				<?php endif; ?>
 				<tr>
 					<td>Email: </td>
 					<td><?= $_SESSION['email']; ?></td>
