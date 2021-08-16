@@ -89,7 +89,7 @@
                                     <div class="form-user">
                                         <label for="dob">Date of Birth </label> <input type="date" name="dateOfBirth"
                                             id="dateOfBirth" tabindex="1" style="width: 150px;margin-left: 20px;"
-                                            lass="form-control" value="2018-07-22" required>
+                                            lass="form-control" value="2003-08-16" required>
                                     </div>
                                     <div class="form-company" style="margin-bottom: 20px;">
                                         <input type="text" name="CompanyName" id="CompanyName" tabindex="1"
@@ -144,6 +144,7 @@
                                             tabindex="2">
                                         <label for="SubscriptionChoice2">Prime - 100$/month</label>
                                     </div>
+                                    <span id="subscriptionChoiceMessage"></span>
                                     <div class="form-user">
                                         <label>Subcription choice</label>
                                         <br>
@@ -159,6 +160,18 @@
                                             tabindex="2">
                                         <label for="SubscriptionChoice2">Prime - 20$/month</label>
                                     </div>
+                                    <div class="automaticPayments">
+                                        <label>Automatic Payments</label>
+                                        <br>
+                                        <input type="radio" id="automaticPaymentsYes" name="automaticPayments" value="1"
+                                            tabindex="2" checked>
+                                        <label for="automaticPaymentsChoice1">Yes</label>
+                                        <br>
+                                        <input type="radio" id="automaticPaymentsNo" name="automaticPayments" value="0"
+                                            tabindex="2">
+                                        <label for="automaticPaymentsChoice1">No</label>
+                                    </div>
+                                    <span id="automaticPaymentsMessage"></span>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">

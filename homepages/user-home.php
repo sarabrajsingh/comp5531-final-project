@@ -1,12 +1,10 @@
 <?php
-session_start();
+session_start();require 'load-attributes.php';
 // If the user is not logged in redirect to the login page...
-
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: ../index.html');
-	exit("Not logged in.");
+	//header('Location: index.html');
+	exit("session problem");
 }
-require 'load-attributes.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,17 +17,16 @@ require 'load-attributes.php';
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="js/script.js"></script>
 	</head>
 	<body class="loggedin">
-			<?php require 'header.php'; ?>
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
-
+<?php require "header.php" ?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-				<a href="#" class="list-group-item list-group-item-action">Search for a Job</a>
+				<a href="#" id="searchJobTab" class="list-group-item list-group-item-action">Search for a Job</a>
 				<?php
 					session_start();
 					require "../database/db.php";
@@ -49,8 +46,9 @@ require 'load-attributes.php';
 					}
 
 					if($isPaid) {
-						echo '<a href="#" class="list-group-item list-group-item-action">Recent Jobs</a>';
-						echo '<a href="#" class="list-group-item list-group-item-action">My Job Offers</a>';
+						echo '<a href="#" id="recentJobsTab" class="list-group-item list-group-item-action">Recent Jobs</a>';
+						echo '<a href="#" id="myJobOffersTab" class="list-group-item list-group-item-action">My Job Offers</a>';
+						echo '<a href="#" id="myAppliedJobs" class="list-group-item list-group-item-action">My Applied Jobs</a>';
 					}
           		?>
             </div> 

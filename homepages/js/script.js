@@ -17,6 +17,12 @@ $(function () {
     $('#contactUsTab').click(function (e) {
         $(".card-body").load("containers/contact-us.php");
     });
+    $('#myJobOffersTab').click(function (e) {
+        $(".card-body").load("containers/my-job-offers.php");
+    });
+    $('#myAppliedJobs').click(function (e) {
+        $(".card-body").load("containers/my-applied-jobs.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -28,8 +34,9 @@ $(function () {
                 "jobCategory": $('#jobCategory').val(),
                 "companyName": $('#companyName').val(),
                 "lowerSalaryAmount": $('#lowerSalaryAmount').val(),
-                "upperSal   aryAmount": $('#upperSalaryAmount').val(),
-                "description": $('#description').val()
+                "upperSalaryAmount": $('#upperSalaryAmount').val(),
+                "description": $('#description').val(),
+                "numVacancies": $('#numVacancies').val()
             },
             encode: true
         }).done(function (data) {
@@ -88,7 +95,7 @@ $(function () {
             var resultsContainer = document.getElementById("searchResults1");
             resultsContainer.innerHTML = "";
             for (var i = 0; i < data.length; i++) {
-                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?jobID=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
             }
         });
     });
@@ -110,7 +117,7 @@ $(function () {
             var resultsContainer = document.getElementById("searchResults2");
             resultsContainer.innerHTML = "";
             for (var i = 0; i < data.length; i++) {
-                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?jobID=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
             }
         });
     });
@@ -127,7 +134,7 @@ $(function () {
             var resultsContainer = document.getElementById("showRecentJobsResults");
             resultsContainer.innerHTML = "";
             for (var i = 0; i < data.length; i++) {
-                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+                resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?jobID=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
             }
         });
     });
@@ -199,5 +206,8 @@ $(function () {
                 console.log(rows);
             }
         });
+    });
+    $('#acceptJobButton').click(function (e) {
+        alert("test");
     });
 });

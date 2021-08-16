@@ -1,23 +1,16 @@
 <?php
 $redirect_path = '';
-if (isset($_SESSION['employerStatus'])){
+if ($_SESSION['type'] == 'employer'){
     $redirect_path = 'employer-home.php';
-} else {
+} else if ($_SESSION['type'] == 'user'){
     $redirect_path = 'user-home.php';
+} else {
+  $redirect_path = 'admin-home.php';
 }
 ?>
 
 <!DOCTYPE html>
 <html>
-
-	<!-- <nav class="navtop">
-		<div>
-			<h1 style="display:inline"><a href=<?=$redirect_path?>>Job Findr</a> </h1>
-			<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-			<a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-		</div>
-	</nav> -->
-<!-- Working for now -->
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">

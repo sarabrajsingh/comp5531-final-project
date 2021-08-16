@@ -1,11 +1,11 @@
 <?php
+session_start();
 require 'load-attributes.php';
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
 	//header('Location: index.html');
 	exit("session problem");
 }
-require 'load-attributes.php';
 ?>
 
 <!DOCTYPE html>

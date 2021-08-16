@@ -54,6 +54,12 @@ if (!isset($_SESSION['loggedin'])) {
                 ?>
                 </select>
             </div>
+            <div class="inputRange">
+                <label for="text" class="inputRange">Number of Vacancies:</label>
+                <br></br>
+                <input id="numVacancies" type="range" name="numVacancies" value="1" min="1" max="50" oninput="this.nextElementSibling.value = this.value">
+                <output>1</output>
+            </div>
             <div class="form-group row">
                 <label for="text" class="col-12 col-form-label">Salary</label>
                 <div class="col-12">
