@@ -48,6 +48,7 @@ if (!isset($_SESSION['loggedin'])) {
 					if($isPaid) {
 						echo '<a href="#" id="recentJobsTab" class="list-group-item list-group-item-action">Recent Jobs</a>';
 						echo '<a href="#" id="myJobOffersTab" class="list-group-item list-group-item-action">My Job Offers</a>';
+						echo '<a href="#" id="myAppliedJobs" class="list-group-item list-group-item-action">My Applied Jobs</a>';
 					}
           		?>
             </div> 
