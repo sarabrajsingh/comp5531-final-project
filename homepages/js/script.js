@@ -20,6 +20,9 @@ $(function () {
     $('#myJobOffersTab').click(function (e) {
         $(".card-body").load("containers/my-job-offers.php");
     });
+    $('#myAppliedJobs').click(function (e) {
+        $(".card-body").load("containers/my-applied-jobs.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
