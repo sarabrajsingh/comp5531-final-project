@@ -1,7 +1,6 @@
 <?php
 session_start();
 // If the user is not logged in redirect to the login page...
-
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../index.html');
 	exit("Not logged in.");
@@ -19,6 +18,7 @@ require 'load-attributes.php';
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="js/script.js"></script>
 	</head>
 	<body class="loggedin">
 			<?php require 'header.php'; ?>
