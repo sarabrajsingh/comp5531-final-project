@@ -85,7 +85,7 @@ if (!isset($_SESSION['loggedin'])) {
 				<button onclick="window.location='edit-profile.php'">Edit profile</button>
 				<button onclick="window.location='delete-profile.php'">Delete profile</button>			
 				<button type="button" id="makePayment" name="makePayment">Make a Payment!</button>
-				<span id="saveButtonMessage"></span>
+				<span id="makePaymentButton"></span>
 			</div>
 		<?php endif; ?>
 	</div>
