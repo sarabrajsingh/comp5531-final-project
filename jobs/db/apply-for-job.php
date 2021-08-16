@@ -6,54 +6,61 @@ $error = [];
 $data = array();
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-if ( !isset($_POST['jobID'])) {
+if ( !isset($_SESSION["login-email"], $_POST["jobID"], $_POST["companyName"])) {
 	// Could not get the data that should have been sent.
 	exit('arugments error');
 }
 
-// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT * FROM jobs WHERE jobID = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-
-	$stmt->bind_param("s", $_POST["jobID"]);
-	$stmt->execute();
-	// Store the result so we can check if the account exists in the database.
-	$stmt->store_result();
-    $stmt->bind_result(
-        $jobID,
-        $jobName,
-        $companyName,
-        $datePosted,
-        $jobStatus,
-        $description,
-        $lowerSalaryLimit,
-        $upperSalaryLimit,
-        $jobCategory,
-        $numVacancies
-    );
+// get userId
+if($stmt = $con->prepare('SELECT userId FROM users WHERE email = ?')){
+    $stmt->bind_param("s", $_SESSION["login-email"]);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($userId);
     $stmt->fetch();
+} else {
+    $errors['sqlError'] = "error with SQL query (SELECT userId FROM users WHERE email = ?)";
+}
 
-	if ($stmt->num_rows > 0) {
-        $data["success"] = true;
-        $data["response"]["jobID"] =         $jobID;
-        $data["response"]["jobName"] =         $jobName;
-        $data["response"]["companyName"] =         $companyName;
-        $data["response"]["datePosted"] =         $datePosted;
-        $data["response"]["jobStatus"] =         $jobStatus;
-        $data["response"]["description"] =         $description;
-        $data["response"]["lowerSalaryLimit"] =         $lowerSalaryLimit;
-        $data["response"]["upperSalaryLimit"] =         $upperSalaryLimit;
-        $data["response"]["jobCategory"] =         $jobCategory;
-        $data["response"]["numVacancie"] =         $numVacancies;
+// take userId and INSERT tuple into applications table
+if($stmt = $con->prepare('INSERT INTO applications (applicationDate, userId, jobID, companyName) VALUES (?, ?, ?, ?);')){
+    $applicationDate = new DateTime("NOW");
+    $applicationDateForDB = $applicationDate->format('Y/m/d H:i:s');
+    $stmt->bind_param("ssss", $applicationDateForDB, $userId, $_POST["jobID"], $_POST["companyName"]);
+    $stmt->execute();
+    $data["success"] = true;
+} else {
+    $error["sqlError"] = "problem with SQL query";
+    $data["success"] = false;
+}
+
+// decrement the vacancies value in the jobs table
+if($data["success"] === true){
+    if($stmt = $con->prepare('SELECT numVacancies FROM jobs WHERE jobID = ?;')) {
+        $stmt->bind_param("s", $_POST["jobID"]);
+        $stmt->execute();
+        $stmt->bind_result($numVacancies);
+        $numVacancies = intval($numVacancies);
+        $stmt->fetch();
     } else {
         $data["success"] = false;
-        $error["sqlError"] = "query returned nothing";
+        $error["sqlError"] = "error with SELECT statement";
     }
-} else {
-    $data["success"] = false;
-    $error["sqlError"] = "query error";
+
+    $stmt->close();
+
+    if($stmt = $con->prepare('UPDATE jobs SET numVacancies = ? WHERE jobID = ?;')) {
+        $newNumVacancies = $numVacancies - 1;
+        $stmt->bind_param("ss", $newNumVacancies, $_POST["jobID"]);
+        $stmt->execute();
+        $data["success"] = true;
+    } else{
+        $data["success"] = false;
+        $error["sqlError"] = "error with second UPDATE statement";
+    }
 }
-$stmt->close();
-$data["errors"] = $error;
+
+$con->close();
+$data["error"] = $error;
 echo json_encode($data);
 ?>

@@ -30,10 +30,19 @@ $(function () {
     $('#applyButton').click(function (e) {
         $.ajax({
             url: "db/apply-for-job.php",// your username checker url
+            type: "POST",
+            datatype: "JSON",
+            data: {
+                "jobID": jobID,
+                "companyName": document.getElementById('companyName').value
+            },
             encode: true,
         }).done(function (data) {
             data = JSON.parse(data)
-            console.log(data);
+            if (data.success) {
+                document.getElementById("applyButton").disabled = true;
+                $('#applyButtonMessage').html("Successfully Applied for Job!").css("color", "green");
+            }
         });
     });
 });
