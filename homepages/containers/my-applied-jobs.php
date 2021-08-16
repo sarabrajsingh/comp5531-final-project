@@ -9,8 +9,8 @@ if (!isset($_SESSION['loggedin'])) {
 <table id="table" tyle="width:100%">
   <tr>
     <th>jobID</th>
-    <th>status</th>
-    <th>decision</th>
+    <th>applicationDate</th>
+    <th>companyName</th>
   </tr>
 <?php
     session_start();
@@ -29,15 +29,15 @@ if (!isset($_SESSION['loggedin'])) {
         $errors['sqlError'] = "error with SQL query (SELECT userId FROM users WHERE email = ?)";
     }
 
-    $sql = "SELECT * FROM jobOffers WHERE userId = ".$userId.";";
+    $sql = "SELECT * FROM applications WHERE userId = ".$userId.";";
     $result = $con->query($sql);
     if($result->num_rows > 0) {
         while($row = $result->fetch_assoc()){
             if($row["name"] != "Administrator") {
                 echo '<tr>';
                 echo '<td><a href=../../../jobs/jobs.php?jobID='.$row["jobID"].'>'.$row["jobID"].'</a></td>';
-                echo '<td>'.$row["status"].'</td>';
-                echo '<td><button type="button" id="acceptJobButton" name="acceptJobButton" class="btn btn-sm btn-primary">Accept</button><span id="acceptJobButtonMessage"></span><button type="button" id="rejectJobButton" class="btn btn-sm btn-primary">Reject</button><span id="rejectJobButtonMessage"></span></td>';
+                echo '<td>'.$row["applicationDate"].'</td>';
+                echo '<td>'.$row["companyName"].'</td>';
                 echo '</tr>';
             }
         }
