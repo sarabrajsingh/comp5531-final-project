@@ -17,7 +17,8 @@
                     $_POST["cardname"], 
                     $_POST["cardnumber"], 
                     $_POST["expyear"], 
-                    $_POST["cvv"]))
+                    $_POST["cvv"],
+                    $_POST["automaticPayments"]))
             $allGood = false;
     }
     if(!$allGood)
@@ -39,7 +40,8 @@
             paymentInfos, 
             isActive,
             type,
-            isPaid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+            isPaid,
+            autoPayment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
         ) {
             /* prepare values */
             $isActive = "1"; // isActive=1 is active, isActive=0 is disabled
@@ -47,7 +49,7 @@
             $isPaid = "0";
 
             /* bind values to SQL stmt */
-            $stmt->bind_param("ssssssss", 
+            $stmt->bind_param("sssssssss", 
                 $_POST["CompanyName"],
                 $_POST["register-email"],
                 $hashedPassword,
@@ -55,7 +57,8 @@
                 $paymentInfo,
                 $isActive,
                 $type,
-                $isPaid
+                $isPaid,
+                $_POST["automaticPayments"]
             );
         } else {
             print_r($stmt);
@@ -72,7 +75,8 @@
                 paymentInfos, 
                 isActive, 
                 type,
-                isPaid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+                isPaid,
+                autoPayment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
             ) {
             /* prepare values */
             $name = $_POST["firstName"].' '.$_POST["lastName"];
@@ -81,7 +85,7 @@
             $isPaid = "0";
 
             /* bind values to SQL stmt */
-            $stmt->bind_param("sssssssss", 
+            $stmt->bind_param("ssssssssss", 
                 $name,
                 $_POST["register-email"],
                 $hashedPassword,
@@ -90,7 +94,8 @@
                 $paymentInfo,
                 $isActive,
                 $type,
-                $isPaid
+                $isPaid,
+                $_POST["automaticPayments"]
             );
         } else {
             print_r($stmt);
