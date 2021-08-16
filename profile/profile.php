@@ -20,6 +20,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/script.js"></script>
 </head>
 
 <body class="loggedin">
@@ -79,12 +80,14 @@ if (!isset($_SESSION['loggedin'])) {
 			<?php endif; ?>
 			</table>
 		</div>
-		<div>
-			<?php if ($_SESSION['type'] != 'admin') : ?>
+		<?php if ($_SESSION['type'] != 'admin') : ?>
+			<div>
 				<button onclick="window.location='edit-profile.php'">Edit profile</button>
-				<button onclick="window.location='delete-profile.php'">Delete profile</button>
-			<?php endif; ?>
-		</div>
+				<button onclick="window.location='delete-profile.php'">Delete profile</button>			
+				<button type="button" id="makePayment" name="makePayment">Make a Payment!</button>
+				<span id="saveButtonMessage"></span>
+			</div>
+		<?php endif; ?>
 	</div>
 </body>
 
