@@ -49,6 +49,7 @@ if (!isset($_SESSION['loggedin'])) {
                 echo '<a href="#" id="postNewJobTab" class="list-group-item list-group-item-action">Post a New Job</a>';
                 echo '<a href="#" id="recentJobsTab" class="list-group-item list-group-item-action">Recent Jobs</a>';
                 echo '<a href="#" id="createJobOfferTab" class="list-group-item list-group-item-action">Create a Job Offer</a>';
+                echo '<a href="#" id="createJobOfferTab" class="list-group-item list-group-item-action">Generate Reports</a>';
               }
           ?>
         </div>
