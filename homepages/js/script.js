@@ -150,4 +150,54 @@ $(function () {
             }
         });
     });
+    $('#enabledSelected').click(function (e) {
+        e.preventDefault();
+        $('table [type="checkbox"]').each(function (i, chk) {
+            if (chk.checked && chk.name === "enabledCheck") {
+                console.log("enabled Checked!", i, chk);
+                $.ajax({
+                    url: "containers/db/submit-job-offer.php",
+                    type: "POST",
+                    datatype: "JSON",
+                    data: {
+                        "companyName": $('#companyName').val(),
+                        "selectedJobFromCompany": $('#selectedJobFromCompany').val(),
+                        "jobOfferForUser": $('#jobOfferForUser').val()
+                    },
+                    encode: true
+                }).done(function (data) {
+                    data = JSON.parse(data);
+                    if (data.success) {
+                        $('#createJobOfferSpanMessage').html("Successfully Submitted Job Offer to Candidate").css("color", "green");
+                    }
+                });
+            }
+        });
+    });
+    $('#disabledSelected').click(function (e) {
+        e.preventDefault();
+        $('table [type="checkbox"]').each(function (i, chk) {
+            if (chk.checked && chk.name === "disabledCheck") {
+                console.log("disabled Checked!", i, chk);
+                // $.ajax({
+                //     url: "containers/db/submit-job-offer.php",
+                //     type: "POST",
+                //     datatype: "JSON",
+                //     data: {
+                //         "companyName": $('#companyName').val(),
+                //         "selectedJobFromCompany": $('#selectedJobFromCompany').val(),
+                //         "jobOfferForUser": $('#jobOfferForUser').val()
+                //     },
+                //     encode: true
+                // }).done(function (data) {
+                //     data = JSON.parse(data);
+                //     if (data.success) {
+                //         $('#createJobOfferSpanMessage').html("Successfully Submitted Job Offer to Candidate").css("color", "green");
+                //     }
+                // });
+                var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                console.log(rows);
+            }
+        });
+    });
 });

@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 <script src="js/script.js"></script>
-<table style="width:100%">
+<table id="table" tyle="width:100%">
   <tr>
     <th>userId</th>
     <th>name</th>
@@ -30,17 +30,17 @@ if (!isset($_SESSION['loggedin'])) {
         while($row = $result->fetch_assoc()){
             if($row["name"] != "Administrator") {
                 echo '<tr>';
-                echo '<th>'.$row["userId"].'</th>';
-                echo '<th>'.$row["name"].'</th>';
-                echo '<th>'.$row["email"].'</th>';
-                echo '<th>'.$row["dob"].'</th>';
-                echo '<th>'.$row["subscriptionLevel"].'</th>';
-                echo '<th>'.$row["paymentInfos"].'</th>';
-                echo '<th>'.$row["isActive"].'</th>';
-                echo '<th>'.$row["type"].'</th>';
-                echo '<th>'.$row["isPaid"].'</th>';
-                echo '<th><input type="checkbox"></input></th>';
-                echo '<th><input type="checkbox"></input></th>';
+                echo '<td>'.$row["userId"].'</td>';
+                echo '<td>'.$row["name"].'</td>';
+                echo '<td>'.$row["email"].'</td>';
+                echo '<td>'.$row["dob"].'</td>';
+                echo '<td>'.$row["subscriptionLevel"].'</td>';
+                echo '<td>'.$row["paymentInfos"].'</td>';
+                echo '<td>'.$row["isActive"].'</td>';
+                echo '<td>'.$row["type"].'</td>';
+                echo '<td>'.$row["isPaid"].'</td>';
+                echo '<td class="category_enabled"><input name="disabledCheck" type="checkbox"></input></td>';
+                echo '<td class="category_enabled"><input name="enabledCheck" type="checkbox"></input></td>';
                 echo '</tr>';
             }
         }
@@ -49,8 +49,8 @@ if (!isset($_SESSION['loggedin'])) {
 ?>
 </table>
 <div class="col-md-7">
+<span id="disableSelectedMessage"></span>
+    <button type="button" id="disabledSelected" class="btn btn-sm btn-primary">Disable Selected Users</button>
     <span id="enabledSelectedMessage"></span>
     <button type="button" id="enabledSelected" class="btn btn-sm btn-primary">Enabled Selected Users</button>
-    <span id="disableSelectedMessage"></span>
-    <button type="button" id="disabledSelected" class="btn btn-sm btn-primary">Disable Selected Users</button>
 </div>
