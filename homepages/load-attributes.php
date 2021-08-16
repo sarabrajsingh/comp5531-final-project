@@ -1,6 +1,6 @@
 <?php
 // This script loads the remaining attributes of either the users or companies tables into $_SESSION
-session_start();
+session_start(['read_and_close'  => true]);
 require '../database/db.php';
 if ($_SESSION['type'] === 'employer' && $stmt = $con->prepare("SELECT companyName, subscriptionLevel, paymentInfos FROM companies WHERE email = ?")) {
     $stmt->bind_param('s', $_SESSION['email']);

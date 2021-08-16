@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(['read_and_close'  => true]);
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
 	//header('Location: index.html');
