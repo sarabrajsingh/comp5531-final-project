@@ -35,8 +35,6 @@ if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNIO
 			$_SESSION['type'] = $type;
 			$_SESSION['login-email'] = $_POST['login-email'];
 
-			echo json_encode($type);
-
 			if($_SESSION['type'] === 'admin'){
 				header('Location: ../homepages/admin-home.php');
 			} else if ($_SESSION['type'] === 'employer') {
@@ -46,7 +44,6 @@ if ($stmt = $con->prepare('SELECT password, type FROM users WHERE email = ? UNIO
 			}
 		}
 	}
-	echo json_encode($stmt);
 	$stmt->close();
 }
 ?>
