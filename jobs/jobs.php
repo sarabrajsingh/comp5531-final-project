@@ -5,8 +5,7 @@
         //header('Location: index.html');
         exit("session problem");
     }
-
-    print_r($_GET);
+    print_r($_GET["id"]);
 ?>
 
 <!DOCTYPE html>
@@ -22,33 +21,58 @@
     <script src="js/script.js"></script>
 </head>
 <body>
+    <?php require "../homepages/header.php" ?>
     <div class="title">
-    <label for="text" class="title">Job Title:</label>
-        <input type="text" value="" class="field left" readonly>
+    <label for="text"class="title">Job Title:</label>
+        <input id="jobTitle" type="text" value="" class="field left" readonly>
     </div>
     <div class="companyName">
-    <label for="text" class="title">Company Name:</label>
-        <input type="text" value="" class="field left" readonly>
+    <label for="text" class="companyName">Company Name:</label>
+        <input id="companyName" type="text" value="" class="field left" readonly>
     </div>
-    <div class="companyName">
-    <label for="text" class="title">Company Name:</label>
-        <input type="text" value="" class="field left" readonly>
+    <div class="datePosted">
+    <label for="text" class="datePosted">Date Posted:</label>
+        <input id="datePosted" type="text" value="" class="field left" readonly>
+    </div>
+    <div class="jobCategory">
+    <label for="text" class="jobCategory">Job Type:</label>
+        <input id="jobCategory" type="text" value="" class="field left" readonly>
     </div>
     <div class="salaryRange">
-    <label for="text" class="title">Salary Range:</label>
-        <input type="text" value="" class="field left" readonly>
+    <label for="text" class="salaryRange">Salary Range:</label>
+        <input id="salaryRange" type="text" value="" class="field left" readonly>
     </div>
     <div class="description">
-    <label for="textarea" class="title">Description:</label>
-        <textarea id="description" name="description" cols="40" rows="10" class="form-control"></textarea>
+    <label for="textarea" class="description">Description:</label>
+        <textarea id="description" name="description" cols="40" rows="20" class="form-control" readonly></textarea>
     </div>
     <?php
         session_start();
         require "../database/db.php";
-        if($_SESSION["type"] === "Employer") {
-            echo '<button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>';
-            echo '<span id="saveButtonMessage"></span>';
-        } elseif ($_SESSION["type"] === "Employee")
+
+        if($stmt = $con->prepare('SELECT isPaid FROM users WHERE email = ? UNION SELECT isPaid FROM companies WHERE email = ?')) {
+            $stmt->bind_param("ss", $_SESSION["login-email"], $_SESSION["login-email"]);
+            $stmt->execute();
+            $stmt->store_result();
+            if($stmt->num_rows > 0) {
+                $stmt->bind_result($isPaid);
+                $stmt->fetch();
+            }
+        }
+        if($isPaid) {
+            if($_SESSION["type"] === "employer") {
+                echo '<button type="button" id="deleteJobButton" class="btn btn-sm btn-primary">Delete Job</button>';
+                echo '<span id="deleteJobButtonMessage"></span>';
+            } elseif ($_SESSION["type"] === "user") {
+                echo '<button type="button" id="applyButton" class="btn btn-sm btn-primary">Apply</button>';
+                echo '<span id="applyButtonMessage"></span>';
+            } else {
+                echo '<button type="button" id="deleteJobButton" class="btn btn-sm btn-primary">Delete Job</button>';
+                echo '<span id="deleteJobButtonMessage"></span>';
+                echo '<button type="button" id="applyButton" class="btn btn-sm btn-primary">Apply</button>';
+                echo '<span id="applyButtonMessage"></span>';
+            }
+        }
     ?>
 </body>
 </html>
