@@ -12,6 +12,7 @@ session_start();
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../profile/js/script.js"></script>
 </head>
 
 <body class='loggedin'>
@@ -20,93 +21,96 @@ session_start();
 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="#" crossorigin="anonymous">
 
-	<div>
-		<h2>Edit Your Profile</h2>
-		<form id="edit-profile-form" action="../profile/update-profile.php" method="post" role='form'>
-			<div>
-				<table>
-					<tr>
-						<td> <label for="name">Name: </label></td>
-						<td><input type='text' name='name' id='name' value='<?= $_SESSION['name']; ?>'></td>
-					</tr>
-					<?php if ($_SESSION['type'] === 'user') : ?>
+	<div style="display:flex; justify-content: center;">
+		<div>
+			<h2>Edit Your Profile</h2>
+			<form id="edit-profile-form" action="../profile/update-profile.php" method="post" role='form'>
+
+				<div style="display:flex; justify-content: center;">
+					<table>
 						<tr>
-							<td> <label for="dob">Date of Birth: </label></td>
-							<td><input type='date' name='dob' id='dob' value='<?= $_SESSION['dob']; ?>'></td>
+							<td> <label for="name">Name: </label></td>
+							<td><input type='text' name='name' id='name' value='<?= $_SESSION['name']; ?>'></td>
 						</tr>
-					<?php endif; ?>
-					<tr>
-						<td>Email: </td>
-						<td><?= $_SESSION['email']; ?></td>
-					</tr>
-					<tr>
-						<td> <label for="password">Password: </label></td>
-						<td><input type='password' name='password' id='password' value='<?= $_SESSION['password']; ?>'></td>
-					</tr>
-					<tr>
-						<td>Subscription Level: </td>
-						<td>
-							<?php if ($_SESSION['type'] === 'user') : ?>
-								<?php if ($_SESSION['subscriptionLevel'] === 'Basic') : ?>
-									<label><input type="radio" name="subscriptionLevel" value="Basic" checked> Basic - Free</label><br>
-								<?php else : ?>
-									<label><input type="radio" name="subscriptionLevel" value="Basic"> Basic - Free</label><br>
+						<?php if ($_SESSION['type'] === 'user') : ?>
+							<tr>
+								<td> <label for="dob">Date of Birth: </label></td>
+								<td><input type='date' name='dob' id='dob' value='<?= $_SESSION['dob']; ?>'></td>
+							</tr>
+						<?php endif; ?>
+						<tr>
+							<td>Email: </td>
+							<td><?= $_SESSION['email']; ?></td>
+						</tr>
+						<tr>
+							<td> <label for="password">Password: </label></td>
+							<td><input type='password' name='password' id='password' value='<?= $_SESSION['password']; ?>'></td>
+						</tr>
+						<tr>
+							<td>Subscription Level: </td>
+							<td>
+								<?php if ($_SESSION['type'] === 'user') : ?>
+									<?php if ($_SESSION['subscriptionLevel'] === 'Basic') : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Basic" checked> Basic - Free</label><br>
+									<?php else : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Basic"> Basic - Free</label><br>
+									<?php endif; ?>
 								<?php endif; ?>
-							<?php endif; ?>
-							<?php if ($_SESSION['type'] === 'user') : ?>
-							<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Gold" checked> Gold - $10/month</label><br>
-							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Gold"> Gold - $10/month</label><br>
-							<?php endif; ?>
-							<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Prime" checked> Prime - $20/month</label>
-							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Prime"> Prime - $20/month</label>
-							<?php endif; ?>
-							<?php else : ?>
-							<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Gold" checked> Gold - $50/month</label><br>
-							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Gold"> Gold - $50/month</label><br>
-							<?php endif; ?>
-							<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Prime" checked> Prime - $100/month</label>
-							<?php else : ?>
-								<label><input type="radio" name="subscriptionLevel" value="Prime"> Prime - $100/month</label>
-							<?php endif; ?>
-							<?php endif; ?>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div>
-				<p>Your payment information follows: </p>
-				<table>
-					<tr>
-						<td><label for='nameOnCard'>Name on Card: </td>
-						<td><input type='text' name='nameOnCard' id='nameOnCard' value='<?= $_SESSION['nameOnCard']; ?>'></td>
-					</tr>
-					<tr>
-						<td> <label for="cardNumber">Credit Card Number: </label></td>
-						<td><input type='text' name='cardNumber' id='cardNumber' value='<?= $_SESSION['cardNumber']; ?>'></td>
-					</tr>
-					<tr>
-						<td><label for='expirationDate'>Expiration Date: </label></td>
-						<td><input type='text' name='expirationDate' id='expirationDate' value='<?= $_SESSION['expirationDate']; ?>'></td>
-					</tr>
-					<tr>
-						<td><label for='cvv'>CVV :</label></td>
-						<td><input type='text' name='cvv' id='cvv' value='<?= $_SESSION['cvv']; ?>'></td>
-					</tr>
-				</table>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3">
+								<?php if ($_SESSION['type'] === 'user') : ?>
+									<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Gold" checked> Gold - $10/month</label><br>
+									<?php else : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Gold"> Gold - $10/month</label><br>
+									<?php endif; ?>
+									<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Prime" checked> Prime - $20/month</label>
+									<?php else : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Prime"> Prime - $20/month</label>
+									<?php endif; ?>
+								<?php else : ?>
+									<?php if ($_SESSION['subscriptionLevel'] === 'Gold') : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Gold" checked> Gold - $50/month</label><br>
+									<?php else : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Gold"> Gold - $50/month</label><br>
+									<?php endif; ?>
+									<?php if ($_SESSION['subscriptionLevel'] === 'Prime') : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Prime" checked> Prime - $100/month</label>
+									<?php else : ?>
+										<label><input type="radio" name="subscriptionLevel" value="Prime"> Prime - $100/month</label>
+									<?php endif; ?>
+								<?php endif; ?>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p>Your payment information follows: </p>
+					<table>
+						<tr>
+							<td><label for='nameOnCard'>Name on Card: </td>
+							<td><input type='text' name='nameOnCard' id='nameOnCard' value='<?= $_SESSION['nameOnCard']; ?>'></td>
+						</tr>
+						<tr>
+							<td> <label for="cardNumber">Credit Card Number: </label></td>
+							<td><input type='text' name='cardNumber' id='cardNumber' value='<?= $_SESSION['cardNumber']; ?>'></td>
+						</tr>
+						<tr>
+							<td><label for='expirationDate'>Expiration Date: </label></td>
+							<td><input type='text' name='expirationDate' id='expirationDate' value='<?= $_SESSION['expirationDate']; ?>'></td>
+						</tr>
+						<tr>
+							<td><label for='cvv'>CVV :</label></td>
+							<td><input type='text' name='cvv' id='cvv' value='<?= $_SESSION['cvv']; ?>'></td>
+						</tr>
+					</table>
+				</div>
+				<div class="form-group">
+					<div class="row">
+
 						<input type="submit" name="edit-profile-submit" id="edit-profile-submit" tabindex="4" class="form-control btn btn-register" value="Save">
-		</form>
-		<button onclick="window.location='profile.php'">Cancel</button>
+			</form>
+			<a href="#" id="contBtn" class="form-control btn btn-register">Cancel</a>
+		</div>
 	</div>
 </body>
 
