@@ -61,7 +61,6 @@
                 $_POST["automaticPayments"]
             );
         } else {
-            print_r($stmt);
             exit("problem with INSERT INTO companies query. check attributes.");
         }
     } else {
@@ -98,13 +97,11 @@
                 $_POST["automaticPayments"]
             );
         } else {
-            print_r($stmt);
             exit("problem with INSERT INTO users query. check attributes.");
         }
     }
 
     $stmt->execute();
-    print_r($stmt);
 
     if($stmt->errno != 0) {
         exit('error = ' . $stmt->error);
