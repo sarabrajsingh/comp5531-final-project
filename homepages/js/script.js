@@ -11,6 +11,12 @@ $(function () {
     $('#createJobOfferTab').click(function (e) {
         $(".card-body").load("containers/create-job-offer.php");
     });
+    $('#userManagementTab').click(function (e) {
+        $(".card-body").load("containers/user-management.php");
+    });
+    $('#contactUsTab').click(function (e) {
+        $(".card-body").load("containers/contact-us.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
