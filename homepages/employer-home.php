@@ -1,6 +1,5 @@
 <?php
 require 'load-attributes.php';
-session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
 	//header('Location: index.html');
@@ -28,10 +27,30 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="row">
       <div class="col-md-3 ">
         <div class="list-group">
-          <a href="#" id="postNewJobTab" class="list-group-item list-group-item-action">Post a New Job</a>
           <a href="#" id="searchJobTab" class="list-group-item list-group-item-action">Search Jobs</a>
-          <a href="#" id="recentJobsTab" class="list-group-item list-group-item-action">Recent Jobs</a>
-          <a href="#" id="createJobOfferTab" class="list-group-item list-group-item-action">Create a Job Offer</a>
+          <?php
+              require "../database/db.php";
+
+              if($stmt = $con->prepare('SELECT isPaid FROM users WHERE email = ? UNION SELECT isPaid FROM companies WHERE email = ?;')) {
+                $stmt->bind_param("ss", $_SESSION["login-email"], $_SESSION["login-email"]);
+                $stmt->execute();
+                $stmt->store_result();
+                if($stmt->num_rows > 0) {
+                  $stmt->bind_result($isPaid);
+                  $stmt->fetch();
+                } else {
+                  echo "num_rows not > 0";
+                }
+              } else {
+                echo "problem interfacing with DB";
+              }
+
+              if($isPaid) {
+                echo '<a href="#" id="postNewJobTab" class="list-group-item list-group-item-action">Post a New Job</a>';
+                echo '<a href="#" id="recentJobsTab" class="list-group-item list-group-item-action">Recent Jobs</a>';
+                echo '<a href="#" id="createJobOfferTab" class="list-group-item list-group-item-action">Create a Job Offer</a>';
+              }
+          ?>
         </div>
       </div>
       <div class="col-md-9">

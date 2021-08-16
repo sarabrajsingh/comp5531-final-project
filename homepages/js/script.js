@@ -11,6 +11,12 @@ $(function () {
     $('#createJobOfferTab').click(function (e) {
         $(".card-body").load("containers/create-job-offer.php");
     });
+    $('#userManagementTab').click(function (e) {
+        $(".card-body").load("containers/user-management.php");
+    });
+    $('#contactUsTab').click(function (e) {
+        $(".card-body").load("containers/contact-us.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
@@ -122,6 +128,75 @@ $(function () {
             resultsContainer.innerHTML = "";
             for (var i = 0; i < data.length; i++) {
                 resultsContainer.innerHTML += "<div id='result_" + i + "'><a href='../../jobs/jobs.php?id=" + data[i].jobID + "'><h3>" + data[i].jobName + "</h3>" + data[i].companyName + "</a><div>";
+            }
+        });
+    });
+    $('#createJobOfferButton').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "containers/db/submit-job-offer.php",
+            type: "POST",
+            datatype: "JSON",
+            data: {
+                "companyName": $('#companyName').val(),
+                "selectedJobFromCompany": $('#selectedJobFromCompany').val(),
+                "jobOfferForUser": $('#jobOfferForUser').val()
+            },
+            encode: true
+        }).done(function (data) {
+            data = JSON.parse(data);
+            if (data.success) {
+                $('#createJobOfferSpanMessage').html("Successfully Submitted Job Offer to Candidate").css("color", "green");
+            }
+        });
+    });
+    $('#enabledSelected').click(function (e) {
+        e.preventDefault();
+        $('table [type="checkbox"]').each(function (i, chk) {
+            if (chk.checked && chk.name === "enabledCheck") {
+                console.log("enabled Checked!", i, chk);
+                $.ajax({
+                    url: "containers/db/submit-job-offer.php",
+                    type: "POST",
+                    datatype: "JSON",
+                    data: {
+                        "companyName": $('#companyName').val(),
+                        "selectedJobFromCompany": $('#selectedJobFromCompany').val(),
+                        "jobOfferForUser": $('#jobOfferForUser').val()
+                    },
+                    encode: true
+                }).done(function (data) {
+                    data = JSON.parse(data);
+                    if (data.success) {
+                        $('#createJobOfferSpanMessage').html("Successfully Submitted Job Offer to Candidate").css("color", "green");
+                    }
+                });
+            }
+        });
+    });
+    $('#disabledSelected').click(function (e) {
+        e.preventDefault();
+        $('table [type="checkbox"]').each(function (i, chk) {
+            if (chk.checked && chk.name === "disabledCheck") {
+                console.log("disabled Checked!", i, chk);
+                // $.ajax({
+                //     url: "containers/db/submit-job-offer.php",
+                //     type: "POST",
+                //     datatype: "JSON",
+                //     data: {
+                //         "companyName": $('#companyName').val(),
+                //         "selectedJobFromCompany": $('#selectedJobFromCompany').val(),
+                //         "jobOfferForUser": $('#jobOfferForUser').val()
+                //     },
+                //     encode: true
+                // }).done(function (data) {
+                //     data = JSON.parse(data);
+                //     if (data.success) {
+                //         $('#createJobOfferSpanMessage').html("Successfully Submitted Job Offer to Candidate").css("color", "green");
+                //     }
+                // });
+                var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                console.log(rows);
             }
         });
     });
