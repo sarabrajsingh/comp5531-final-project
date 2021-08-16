@@ -5,7 +5,6 @@ if (!isset($_SESSION['loggedin'])) {
 	//header('Location: index.html');
 	exit("session problem");
 }
-require 'load-attributes.php';
 ?>
 
 <!DOCTYPE html>

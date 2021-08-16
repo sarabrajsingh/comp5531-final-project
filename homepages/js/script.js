@@ -17,6 +17,9 @@ $(function () {
     $('#contactUsTab').click(function (e) {
         $(".card-body").load("containers/contact-us.php");
     });
+    $('#myJobOffersTab').click(function (e) {
+        $(".card-body").load("containers/my-job-offers.php");
+    });
     $('#saveButton').click(function (e) {
         e.preventDefault();
         $.ajax({
